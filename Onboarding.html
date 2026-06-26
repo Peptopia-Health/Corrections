@@ -15,7 +15,7 @@
             --success-teal: #10b981;
             --bg-light: #f8fafc;
             --white: #ffffff;
-            --drug-blue: #0000FF; /* Bright Blue */
+            --drug-blue: #0000FF;
 
             --bg: var(--bg-light); 
             --surface: var(--white);
@@ -46,15 +46,13 @@
         .disease-must-know { color: #c2410c; font-weight: 800; }
         .time-frame { font-weight: 900; color: #1e40af; text-decoration: underline; }
 
-        /* === UI COMPONENTS === */
         .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2.5rem; }
         .section-header { border-left: 6px solid var(--secondary-blue); padding-left: 1.5rem; margin-bottom: 2rem; }
         
-        /* === MINIMIZED BUTTONS === */
         .quiz-badge-btn { 
             background: var(--white); 
             border: 2px solid var(--accent); 
-            padding: 0.35rem 1rem; /* Reduced vertical height */
+            padding: 0.35rem 1rem;
             border-radius: 2rem; 
             font-size: 1rem; 
             font-weight: 800; 
@@ -64,7 +62,7 @@
             text-transform: uppercase; 
             letter-spacing: 0.5px; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
-            white-space: nowrap; /* Keep on one line */
+            white-space: nowrap;
         }
         .quiz-badge-btn:hover { background: var(--accent); color: white; transform: translateY(-1px); }
 
@@ -72,7 +70,7 @@
             background-color: #1e293b;
             color: white;
             font-weight: 800;
-            padding: 0.35rem 1.25rem; /* Reduced vertical height */
+            padding: 0.35rem 1.25rem;
             border-radius: 2rem;
             font-size: 1rem;
             text-transform: uppercase;
@@ -82,7 +80,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            white-space: nowrap; /* Keep on one line */
+            white-space: nowrap;
         }
         .print-btn:hover { background-color: #0f172a; transform: translateY(-1px); }
 
@@ -116,19 +114,17 @@
 
     <div id="view-study" class="max-w-6xl mx-auto space-y-8">
         
-        <!-- Header -->
         <div class="flex flex-col md:flex-row justify-between items-center no-print gap-6 mb-8">
             <div>
                 <h1 class="text-6xl font-black text-slate-800 tracking-tighter">Onboarding</h1>
                 <p class="text-blue-600 font-bold uppercase tracking-widest mt-2">Integrated Clinical Training</p>
             </div>
             <div class="flex gap-4 items-center">
-                <button onclick="startQuiz(event)" class="quiz-badge-btn">📝 Quiz (180 Questions)</button>
+                <button onclick="startQuiz(event)" class="quiz-badge-btn">📝 Quiz (Loading...)</button>
                 <button onclick="window.print()" class="print-btn">🖨️ Print</button>
             </div>
         </div>
 
-        <!-- MODULE I: CONDUCT & ETHICS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">I. Workplace Integrity & Ethics</h2>
@@ -157,7 +153,6 @@
             </div>
         </section>
 
-        <!-- MODULE II: PREA PROTOCOLS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">II. PREA & Vulnerable Populations</h2>
@@ -184,14 +179,11 @@
             </div>
         </section>
 
-        <!-- MODULE III: CLINICAL SCREENING BASELINES -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">III. Physical Assessment Baselines</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm font-medium text-gray-700">
-                
-                <!-- Ocular -->
                 <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
                     <h4 class="font-black text-blue-800 uppercase mb-4 underline">👁️ Ocular (Snellen)</h4>
                     <ul class="list-disc ml-5 space-y-4">
@@ -201,8 +193,6 @@
                         <li><strong>Norms:</strong> Sclera should be white; Conjunctiva should be pink and moist.</li>
                     </ul>
                 </div>
-
-                <!-- Abdominal -->
                 <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
                     <h4 class="font-black text-blue-800 uppercase mb-4 underline">🍏 Abdominal Exam</h4>
                     <ul class="list-disc ml-5 space-y-4">
@@ -210,8 +200,6 @@
                         <li><strong>Bowel Sounds:</strong> Normal clinical findings require bowel sounds to be present in all 4 quadrants every <span class="time-frame">5 – 10 seconds</span>. ⏱️</li>
                     </ul>
                 </div>
-
-                <!-- Neck & Lungs -->
                 <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
                     <h4 class="font-black text-blue-800 uppercase mb-4 underline">👤 Neck & Lungs</h4>
                     <ul class="list-disc ml-5 space-y-4">
@@ -221,8 +209,6 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- Extremities & Vitals -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-sm font-medium text-gray-700">
                 <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
                     <h4 class="font-black text-blue-800 uppercase mb-4 underline">💪 Extremity Assessment</h4>
@@ -242,13 +228,11 @@
             </div>
         </section>
 
-        <!-- MODULE IV: MEDICATION & PHARMACY SAFETY -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">IV. Medication Management</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                
                 <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
                     <h3 class="font-bold text-blue-900 mb-3 underline uppercase text-xs">💊 Admin Standards</h3>
                     <ul class="space-y-4 font-medium">
@@ -258,8 +242,6 @@
                         <li>• <strong>MAR Documentation:</strong> Circle initials on the front if missed; write out the full explanation on the **BACK** (no shorthand codes on front).</li>
                     </ul>
                 </div>
-
-                <!-- Revised Insulin Section for Better Legibility -->
                 <div class="bg-slate-100 border border-slate-300 text-slate-800 p-6 rounded-2xl shadow-sm">
                     <h3 class="font-black text-blue-800 uppercase text-xs mb-3 underline">🩸 Insulin Kinetics & Injection Rules</h3>
                     <ul class="space-y-3 font-medium">
@@ -275,11 +257,9 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
         </section>
 
-        <!-- MODULE V: ADDICTION MEDICINE (MOUD) -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">V. OUD Pharmacology</h2>
@@ -298,7 +278,6 @@
             </div>
         </section>
 
-        <!-- MODULE VI: PUBLIC HEALTH & HERBALS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">VI. Public Health & Herbals</h2>
@@ -322,20 +301,17 @@
             </div>
         </section>
 
-        <!-- MODULE VII: ENVIRONMENTAL SAFETY & WOUNDS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 class="text-3xl font-black text-slate-800 uppercase">VII. Safety & Wound Care</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                
                 <div class="space-y-4 bg-emerald-50 p-6 rounded-2xl border border-emerald-200">
                     <h3 class="font-black text-emerald-900 uppercase text-xs underline mb-4">⚠️ Fall & Lift Safety</h3>
                     <p>• <strong>Fall Mechanics:</strong> Falls are the 3rd leading cause of injury death. A front-foot slip causes a <span class="font-bold">backward</span> fall. A trip can be caused by a <span class="time-frame">3/8" rise</span> in a floor surface.</p>
                     <p>• <strong>Technique:</strong> Tuck chin, bend all limbs, and roll. <span class="disease-must-know">NEVER</span> use hands or elbows to brace a fall (causes fractures).</p>
                     <p>• <strong>Safe Patient Handling:</strong> Uncooperative patient lifts require a mechanical sling and <span class="time-frame">TWO more caregivers</span> (3 total staff).</p>
                 </div>
-
                 <div class="space-y-4 bg-slate-50 p-6 rounded-2xl border border-slate-200">
                     <h3 class="font-black text-slate-900 uppercase text-xs underline mb-4">🩹 Wound Staging</h3>
                     <p>• <strong>Stage I:</strong> Intact skin; non-blanchable erythema (redness).</p>
@@ -347,7 +323,6 @@
             </div>
         </section>
 
-        <!-- CLINICAL KEY POINTS -->
         <section class="bg-slate-800 p-10 rounded-3xl text-white shadow-2xl">
             <h2 class="text-4xl font-black mb-8 text-center text-yellow-400 uppercase tracking-tight">Clinical Key Points</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-xs font-bold opacity-95">
@@ -413,40 +388,35 @@
     </div>
 
 <script>
-const QUESTIONS = [
-    { id: 1, topic: 'Documentation', text: "The nursing history and physical is not part of the legal health record.", type: 'TF', answer: false, rationale: "False. The H&P is a mandatory clinical component of the legal medical record." },
-    { id: 2, topic: 'Extremity Assessment', text: "Which should be examined during a physical regarding extremities? (Select All That Apply)", type: 'SATA', options: ["Edema", "Strength", "Movement", "Presence of prosthetics", "Pulses"], answer: [0, 1, 2, 3, 4], rationale: "A thorough exam covers edema, motor strength, range of movement, prosthetics, and palpable pulses." },
-    { id: 3, topic: 'Nurse Referrals', text: "A nurse can refer a patient to the provider at any time.", type: 'TF', answer: true, rationale: "True. Nurses have the professional authority to refer patients based on clinical assessment at any time." },
-    { id: 4, topic: 'Abdominal Assessment', text: "Normal bowel sounds are heard every 5-10 minutes.", type: 'TF', answer: false, rationale: "False. Normal bowel sounds occur every 5 - 10 SECONDS." },
-    { id: 5, topic: 'Pressure Injuries', text: "Which describes a Stage III pressure injury? (Select all that Apply)", type: 'SATA', options: ["Full-thickness tissue loss.", "Subcutaneous fat may be visible.", "Bone, tendon or muscle are NOT exposed.", "Slough may be present but does not obscure depth of loss."], answer: [0, 1, 2, 3], rationale: "Stage III involves full tissue loss and fat visibility, but no deep structure exposure." },
-    { id: 6, topic: 'Abdominal Assessment', text: "Place the steps to an abdominal assessment into the correct order.", type: 'MC', options: ["Inspection, Palpation, Percussion, Auscultation", "Inspection, Auscultation, Palpation, Percussion", "Palpation, Auscultation, Inspection", "Auscultation, Palpation, Percussion"], answer: 1, rationale: "Inspection followed by Auscultation ensures subsequent palpation doesn't create false bowel sounds." },
-    { id: 7, topic: 'Safety & Falls', text: "Hold out your hands to break your fall.", type: 'TF', answer: false, rationale: "False. Holding out hands leads to wrist fractures. Tuck and roll with bent limbs instead." },
-    { id: 8, topic: 'Safe Patient Handling', text: "When lifting a patient that is not cooperative, use a full sling lift and ______more caregivers.", type: 'MC', options: ["one", "two", "three", "four"], answer: 1, rationale: "Two more caregivers (total of three) are required for an uncooperative mechanical lift." },
-    { id: 9, topic: 'Pressure Injuries', text: "A shallow open ulcer with a red-pink wound bed without slough is typically a Stage III injury.", type: 'TF', answer: false, rationale: "False. This describes a Stage II injury." },
-    { id: 10, topic: 'Occupational Safety', text: "Manual patient handling is the single greatest risk factor for overexertion injuries in health care workers.", type: 'TF', answer: true, rationale: "True." },
-    { id: 11, topic: 'Insulin', text: "Regular insulin peak action is _____ hours.", type: 'MC', options: ["1-2", "2-4", "4-6", "6-8"], answer: 1, rationale: "Regular insulin peaks at 2-4 hours." },
-    { id: 12, topic: 'PREA', text: "Initial screen must occur within ___ hours of arrival.", type: 'MC', options: ["24", "48", "72", "96"], answer: 2, rationale: "72 hours is the PREA mandate." },
-    { id: 13, topic: 'Pharmacy', text: "Which drug type is NEVER to be pre-poured?", type: 'MC', options: ["Antibiotics", "Controlled substances", "Vitamins", "Psychotropics"], answer: 1, rationale: "Controlled substances are never pre-poured." },
-    { id: 14, topic: 'SBAR', text: "In SBAR, what does the 'B' stand for?", type: 'MC', options: ["Behavior", "Background", "Baseline", "Booking"], answer: 1, rationale: "B = Background." },
-    { id: 15, topic: 'Ethics', text: "Violations are judged by actor intent, not impact on victim.", type: 'TF', answer: false, rationale: "False. Violations are judged by impact on the victim." },
-    { id: 16, topic: 'MOUD', text: "Methadone carries a unique risk of QT prolongation.", type: 'TF', answer: true, rationale: "True." },
-    { id: 17, topic: 'MOUD', text: "Buprenorphine has a 'Ceiling Effect' on respiratory depression.", type: 'TF', answer: true, rationale: "True." },
-    { id: 18, topic: 'Vitals', text: "Stated weight is considered a part of vital signs.", type: 'TF', answer: false, rationale: "False. Clinical measurement is required." },
-    { id: 19, topic: 'Safety', text: "A 3/8\" rise in a walkway is sufficient to cause a trip.", type: 'TF', answer: true, rationale: "True." },
-    { id: 20, topic: 'Ocular', text: "The Pupil is the colored part of the eye.", type: 'TF', answer: false, rationale: "False. The Iris is the colored part." }
-];
+let QUESTIONS = [];
+let state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: [], answeredLog: {} };
 
-// Replicate to 180 questions mapping across syllabus
-for (let i = 21; i <= 180; i++) {
-    const template = QUESTIONS[i % 20];
-    QUESTIONS.push({ ...template, id: i });
-}
-
-let state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: QUESTIONS.slice(0, 180), answeredLog: {} };
+// Be sure to change YOUR_QUIZ_DATA_FILE.json to your actual filename
+fetch('https://peptopia-health.github.io/Corrections/YOUR_QUIZ_DATA_FILE.json')
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json();
+    })
+    .then(data => {
+        QUESTIONS = data;
+        const quizBtn = document.querySelector('.quiz-badge-btn');
+        if (quizBtn) quizBtn.innerText = `📝 Quiz (${QUESTIONS.length} Questions)`;
+    })
+    .catch(error => {
+        console.error('Error loading quiz data:', error);
+    });
 
 function startQuiz(e) {
     if(e) e.stopPropagation();
-    state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: QUESTIONS.slice(0, 180), answeredLog: {} };
+    
+    // Safety check to ensure data loaded before letting the user start
+    if (QUESTIONS.length === 0) {
+        alert("The quiz data hasn't loaded yet, or the link is incorrect. Please check the file link in the code.");
+        return;
+    }
+    
+    state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: QUESTIONS, answeredLog: {} };
+    
     document.getElementById('view-study').classList.add('hidden');
     document.getElementById('view-results').classList.add('hidden');
     document.getElementById('view-quiz').classList.remove('hidden');
@@ -464,7 +434,7 @@ function renderQuestion() {
     state.isGraded = false; state.selections = new Set();
     const q = state.questionsToAsk[state.currentIdx];
     document.getElementById('q-progress').innerText = `QUESTION ${state.currentIdx + 1} / ${state.questionsToAsk.length}`;
-    document.getElementById('nav-controls').classList.add('hidden');
+    document.getElementById('nav-container').classList.add('hidden');
     
     let html = `
         <p class="text-sm font-black text-blue-500 uppercase tracking-widest mb-3">${q.topic}</p>
