@@ -1,0 +1,1776 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHR Clinical Workflow Study Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Zilla+Slab:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #f4f1ec;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-accent: #e8f6f3;
+            --text-primary: #1c2b3a;
+            --text-secondary: #4a5c6e;
+            --text-muted: #7a8b9a;
+            --border: #d6cfc5;
+            --border-light: #e8e2d9;
+            --teal: #0c7f72;
+            --teal-light: #10a396;
+            --teal-bg: #e0f5f1;
+            --coral: #d94f4f;
+            --coral-bg: #fce8e8;
+            --amber: #c67f17;
+            --amber-bg: #fef3d6;
+            --navy: #1c2b3a;
+            --navy-light: #2d4a63;
+            --purple: #6c4fa0;
+            --purple-bg: #f0eaf8;
+            --green: #2d8659;
+            --green-bg: #e3f4eb;
+            --shadow-sm: 0 1px 3px rgba(28,43,58,0.06);
+            --shadow-md: 0 4px 16px rgba(28,43,58,0.08);
+            --shadow-lg: 0 8px 32px rgba(28,43,58,0.12);
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        html.dark {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a2332;
+            --bg-card: #1e2a38;
+            --bg-accent: #122a26;
+            --text-primary: #e4e8ec;
+            --text-secondary: #a0b0be;
+            --text-muted: #6b7d8e;
+            --border: #2a3a4a;
+            --border-light: #233040;
+            --teal: #2dd4b8;
+            --teal-light: #3de8cc;
+            --teal-bg: #0d2e2a;
+            --coral: #f07070;
+            --coral-bg: #2e1a1a;
+            --amber: #f0b429;
+            --amber-bg: #2e2510;
+            --navy: #e4e8ec;
+            --navy-light: #a0b0be;
+            --purple: #b094d6;
+            --purple-bg: #221a30;
+            --green: #4ade80;
+            --green-bg: #0d2e1a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.35);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Hero Header ── */
+        .hero {
+            background: linear-gradient(135deg, #0c7f72 0%, #1c2b3a 60%, #2d4a63 100%);
+            padding: 32px 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        html.dark .hero {
+            background: linear-gradient(135deg, #064e45 0%, #0a1118 60%, #142030 100%);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.12);
+            color: #b2f0e6;
+            font-family: 'Zilla Slab', serif;
+            font-size: 12px; font-weight: 600;
+            padding: 4px 12px; border-radius: 20px;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 12px; backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            color: #fff;
+            font-size: clamp(22px, 5vw, 32px);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        .hero p {
+            color: rgba(255,255,255,0.65);
+            font-size: 14px; line-height: 1.5;
+        }
+
+        /* ── Progress Bar ── */
+        .progress-strip {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 20px;
+            display: flex; align-items: center; gap: 12px;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .progress-label {
+            font-family: 'Zilla Slab', serif;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1; height: 6px;
+            background: var(--border-light);
+            border-radius: 3px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--teal), var(--teal-light));
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .progress-pct {
+            font-size: 13px; font-weight: 700;
+            color: var(--teal);
+            min-width: 36px; text-align: right;
+        }
+
+        /* ── Tab Navigation ── */
+        .tab-bar {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-bar::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            flex: 1; min-width: 0;
+            padding: 14px 8px;
+            background: none; border: none;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active { color: var(--teal); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute; bottom: 0; left: 12px; right: 12px;
+            height: 3px; background: var(--teal);
+            border-radius: 3px 3px 0 0;
+        }
+        .tab-btn .tab-count {
+            background: var(--border-light);
+            color: var(--text-muted);
+            font-size: 11px; padding: 1px 6px;
+            border-radius: 10px;
+        }
+        .tab-btn.active .tab-count {
+            background: var(--teal-bg);
+            color: var(--teal);
+        }
+
+        /* ── Main Content ── */
+        .main { max-width: 700px; margin: 0 auto; padding: 16px 16px 80px; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Guide Tab ── */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            margin-bottom: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s;
+        }
+        .section-card:hover { box-shadow: var(--shadow-md); }
+        .section-header {
+            display: flex; align-items: center; gap: 12px;
+            padding: 16px 18px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .section-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .section-icon.triage { background: var(--teal-bg); color: var(--teal); }
+        .section-icon.detox { background: var(--amber-bg); color: var(--amber); }
+        .section-icon.orders { background: var(--purple-bg); color: var(--purple); }
+        .section-icon.hotlist { background: var(--coral-bg); color: var(--coral); }
+        .section-icon.emergency { background: #fce4ec; color: #c62828; }
+        html.dark .section-icon.emergency { background: #3b1515; color: #ef5350; }
+        .section-meta { flex: 1; min-width: 0; }
+        .section-title {
+            font-family: 'Zilla Slab', serif;
+            font-size: 17px; font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.25;
+        }
+        .section-subtitle {
+            font-size: 12px; color: var(--text-muted); margin-top: 2px;
+        }
+        .section-chevron {
+            color: var(--text-muted);
+            font-size: 14px; transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .section-card.open .section-chevron { transform: rotate(180deg); }
+        .section-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .section-card.open .section-body { max-height: 3000px; }
+        .section-inner { padding: 0 18px 18px; }
+
+        /* Guide Content Styling */
+        .step-flow { counter-reset: step; margin: 12px 0; }
+        .step-item {
+            display: flex; gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            counter-increment: step;
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            width: 28px; height: 28px;
+            background: var(--teal-bg);
+            color: var(--teal);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Zilla Slab', serif;
+            font-size: 13px; font-weight: 700;
+            flex-shrink: 0; margin-top: 1px;
+        }
+        .step-num::before { content: counter(step); }
+        .step-text { font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+        .step-text strong { color: var(--text-primary); font-weight: 600; }
+
+        .bullet-list { list-style: none; margin: 12px 0; }
+        .bullet-list li {
+            position: relative;
+            padding: 8px 0 8px 20px;
+            font-size: 14px; line-height: 1.55;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li::before {
+            content: '';
+            position: absolute; left: 0; top: 15px;
+            width: 7px; height: 7px;
+            background: var(--teal);
+            border-radius: 50%;
+        }
+        .bullet-list li strong { color: var(--text-primary); font-weight: 600; }
+
+        .callout {
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-left: 4px solid;
+            font-size: 13px; line-height: 1.6;
+        }
+        .callout-title {
+            font-family: 'Zilla Slab', serif;
+            font-weight: 700; font-size: 14px;
+            margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+        }
+        .callout.danger {
+            background: var(--coral-bg);
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+        .callout.warning {
+            background: var(--amber-bg);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+        .callout.info {
+            background: var(--purple-bg);
+            border-color: var(--purple);
+            color: var(--purple);
+        }
+        .callout.success {
+            background: var(--green-bg);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .callout ul {
+            list-style: none; margin: 6px 0 0; padding: 0;
+        }
+        .callout ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+        }
+        .callout ul li::before {
+            content: '→';
+            position: absolute; left: 0; font-weight: 700;
+        }
+
+        .hl { background: var(--amber-bg); padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+        .sub-heading {
+            font-family: 'Zilla Slab', serif;
+            font-size: 15px; font-weight: 700;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        /* TQ Badge */
+        .tq-tag {
+            display: inline-flex; align-items: center;
+            background: var(--coral);
+            color: #fff;
+            font-size: 10px; font-weight: 700;
+            padding: 2px 7px; border-radius: 4px;
+            letter-spacing: 0.5px;
+            margin-right: 4px; vertical-align: middle;
+        }
+
+        .check-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 14px; line-height: 1.55;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-box {
+            width: 22px; height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            transition: all 0.2s;
+            color: transparent;
+            font-size: 12px;
+        }
+        .check-item.checked .check-box {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: #fff;
+        }
+        .check-item.checked .check-label {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        /* ── Flashcard Tab ── */
+        .fc-controls {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .fc-counter {
+            font-family: 'Zilla Slab', serif;
+            font-size: 15px; font-weight: 600;
+            color: var(--text-muted);
+        }
+        .fc-counter span { color: var(--teal); }
+        .fc-shuffle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .fc-shuffle:hover { border-color: var(--teal); color: var(--teal); }
+
+        .fc-stage {
+            perspective: 1000px;
+            margin-bottom: 20px;
+            min-height: 260px;
+        }
+        .fc-card {
+            width: 100%;
+            min-height: 260px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+        .fc-card.flipped { transform: rotateY(180deg); }
+        .fc-face {
+            position: absolute; inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+        .fc-front {
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-accent));
+        }
+        .fc-back {
+            background: var(--bg-card);
+            transform: rotateY(180deg);
+        }
+        .fc-front-label {
+            font-family: 'Zilla Slab', serif;
+            font-size: 11px; font-weight: 600;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+        .fc-question {
+            font-family: 'Zilla Slab', serif;
+            font-size: 19px; font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.35;
+        }
+        .fc-tap-hint {
+            margin-top: 20px;
+            font-size: 12px; color: var(--text-muted);
+        }
+        .fc-back-label {
+            font-family: 'Zilla Slab', serif;
+            font-size: 11px; font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+        .fc-answer {
+            font-size: 15px; line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .fc-answer strong { color: var(--text-primary); }
+
+        .fc-nav {
+            display: flex; gap: 12px; justify-content: center;
+        }
+        .fc-nav-btn {
+            flex: 1; max-width: 160px;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px; font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.15s;
+        }
+        .fc-nav-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            box-shadow: var(--shadow-sm);
+        }
+        .fc-nav-btn:disabled {
+            opacity: 0.4; cursor: not-allowed;
+        }
+        .fc-nav-btn:disabled:hover {
+            border-color: var(--border); color: var(--text-secondary);
+            box-shadow: none;
+        }
+
+        /* ── Quiz Tab ── */
+        .quiz-intro {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .quiz-intro-icon {
+            font-size: 42px; margin-bottom: 12px;
+        }
+        .quiz-intro h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 22px; color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .quiz-intro p {
+            font-size: 14px; color: var(--text-muted);
+            margin-bottom: 20px; max-width: 380px; margin-left: auto; margin-right: auto;
+        }
+        .btn-start {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px;
+            background: var(--teal);
+            color: #fff;
+            border: none; border-radius: var(--radius);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 15px; font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-start:hover { background: var(--teal-light); }
+
+        .quiz-area { display: none; }
+        .quiz-area.active { display: block; animation: fadeUp 0.3s ease; }
+        .quiz-progress-bar {
+            display: flex; gap: 4px; margin-bottom: 16px;
+        }
+        .quiz-pip {
+            flex: 1; height: 5px;
+            background: var(--border-light);
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .quiz-pip.done { background: var(--teal); }
+        .quiz-pip.wrong { background: var(--coral); }
+        .quiz-pip.current { background: var(--amber); }
+
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .q-number {
+            font-family: 'Zilla Slab', serif;
+            font-size: 12px; font-weight: 600;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .q-text {
+            font-family: 'Zilla Slab', serif;
+            font-size: 17px; font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .q-options { display: flex; flex-direction: column; gap: 10px; }
+        .q-option {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 16px;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 14px; font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.15s;
+            background: var(--bg-card);
+        }
+        .q-option:hover:not(.disabled) {
+            border-color: var(--teal);
+            background: var(--teal-bg);
+        }
+        .q-option .q-letter {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: var(--border-light);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Zilla Slab', serif;
+            font-size: 13px; font-weight: 700;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+        .q-option:hover:not(.disabled) .q-letter {
+            background: var(--teal);
+            color: #fff;
+        }
+        .q-option.correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+        }
+        .q-option.correct .q-letter {
+            background: var(--green); color: #fff;
+        }
+        .q-option.wrong {
+            border-color: var(--coral);
+            background: var(--coral-bg);
+        }
+        .q-option.wrong .q-letter {
+            background: var(--coral); color: #fff;
+        }
+        .q-option.disabled { cursor: default; opacity: 0.7; }
+        .q-option.disabled:hover { border-color: var(--border-light); background: var(--bg-card); }
+        .q-option.disabled:hover .q-letter { background: var(--border-light); color: var(--text-muted); }
+
+        .q-explanation {
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            font-size: 13px; line-height: 1.6;
+            display: none;
+        }
+        .q-explanation.show { display: block; animation: fadeUp 0.25s ease; }
+        .q-explanation.correct-exp { background: var(--green-bg); color: var(--green); border-left: 4px solid var(--green); }
+        .q-explanation.wrong-exp { background: var(--coral-bg); color: var(--coral); border-left: 4px solid var(--coral); }
+        .q-explanation strong { font-weight: 700; }
+
+        .q-next-wrap {
+            text-align: center; margin-top: 16px;
+            display: none;
+        }
+        .q-next-wrap.show { display: block; }
+        .btn-next {
+            padding: 12px 28px;
+            background: var(--teal);
+            color: #fff;
+            border: none; border-radius: var(--radius);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px; font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-next:hover { background: var(--teal-light); }
+
+        /* Quiz Results */
+        .quiz-results {
+            display: none;
+            text-align: center;
+            padding: 32px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .quiz-results.active { display: block; animation: fadeUp 0.3s ease; }
+        .results-score {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 52px; color: var(--teal);
+            margin: 12px 0 4px;
+        }
+        .results-label {
+            font-family: 'Zilla Slab', serif;
+            font-size: 16px; color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .results-message {
+            font-size: 14px; color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .btn-retry {
+            padding: 12px 28px;
+            background: none;
+            border: 2px solid var(--teal);
+            color: var(--teal);
+            border-radius: var(--radius);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px; font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-retry:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        /* ── Assessment Forms Tab ── */
+        .form-cat-label {
+            font-family: 'Zilla Slab', serif;
+            font-size: 12px; font-weight: 700;
+            color: var(--teal); text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 20px 0 8px; padding: 6px 0;
+            border-bottom: 2px solid var(--border-light);
+        }
+        .form-cat-label:first-child { margin-top: 4px; }
+        .form-purpose {
+            font-size: 13px; line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 8px 0 12px; padding: 10px 14px;
+            background: var(--bg-accent);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--teal);
+        }
+        .form-meta-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 8px; margin-bottom: 12px;
+        }
+        .form-meta-cell {
+            font-size: 12px; padding: 8px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 6px; line-height: 1.5;
+            color: var(--text-secondary);
+        }
+        .form-meta-cell b {
+            display: block; font-size: 10px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); margin-bottom: 2px; font-weight: 700;
+        }
+        .form-tbl {
+            width: 100%; border-collapse: collapse;
+            font-size: 12px; margin: 10px 0;
+            border: 1px solid var(--border-light);
+        }
+        .form-tbl th {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            padding: 7px 10px; text-align: left;
+            font-family: 'Zilla Slab', serif;
+            font-size: 11px; font-weight: 700;
+            color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-tbl td {
+            border: 1px solid var(--border-light);
+            padding: 7px 10px; vertical-align: top;
+            color: var(--text-secondary); line-height: 1.45;
+        }
+        .form-tbl td strong { color: var(--text-primary); }
+        .form-tbl tr:nth-child(even) td { background: var(--bg-secondary); }
+        .sc {
+            display: inline-block; font-size: 11px; padding: 2px 7px;
+            border-radius: 10px; margin: 1px 2px;
+            background: var(--border-light); color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .sc b { color: var(--teal); font-family: 'Zilla Slab', serif; }
+        .interp-bands { margin: 12px 0; }
+        .ib {
+            display: flex; align-items: center; gap: 8px;
+            padding: 7px 12px; margin-bottom: 4px;
+            border-radius: 6px; font-size: 12px;
+            border-left: 4px solid;
+        }
+        .ib-range { font-family: 'Zilla Slab', serif; font-weight: 700; min-width: 55px; }
+        .ib-level { font-weight: 700; min-width: 100px; }
+        .ib-action { flex: 1; font-size: 11px; }
+        .ib-green { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+        .ib-amber { border-color: var(--amber); background: var(--amber-bg); color: var(--amber); }
+        .ib-orange { border-color: #e65100; background: #fff3e0; color: #e65100; }
+        html.dark .ib-orange { background: #2e1a0a; }
+        .ib-red { border-color: var(--coral); background: var(--coral-bg); color: var(--coral); }
+        .ql { counter-reset: ql; margin: 10px 0; }
+        .ql-item {
+            counter-increment: ql; display: flex; gap: 10px;
+            padding: 8px 0; border-bottom: 1px solid var(--border-light);
+            font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+        }
+        .ql-item:last-child { border-bottom: none; }
+        .ql-n {
+            width: 24px; height: 24px; background: var(--teal-bg); color: var(--teal);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Zilla Slab', serif; font-size: 11px; font-weight: 700; flex-shrink: 0;
+        }
+        .ql-n::before { content: counter(ql); }
+        .dim-list { margin: 10px 0; }
+        .dim-row {
+            display: flex; gap: 10px; padding: 8px 12px; margin-bottom: 6px;
+            background: var(--bg-secondary); border: 1px solid var(--border-light);
+            border-radius: 8px; font-size: 13px;
+        }
+        .dim-n {
+            width: 26px; height: 26px; background: var(--purple-bg); color: var(--purple);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Zilla Slab', serif; font-weight: 700; font-size: 12px; flex-shrink: 0;
+        }
+        .dim-body { flex: 1; }
+        .dim-body strong { color: var(--text-primary); display: block; margin-bottom: 1px; font-size: 13px; }
+        .dim-body span { color: var(--text-muted); font-size: 12px; }
+        .section-icon.opioid { background: var(--teal-bg); color: var(--teal); }
+        .section-icon.alcohol { background: var(--amber-bg); color: var(--amber); }
+        .section-icon.benzo { background: var(--purple-bg); color: var(--purple); }
+        .section-icon.screening { background: var(--green-bg); color: var(--green); }
+        .section-icon.framework { background: var(--coral-bg); color: var(--coral); }
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+            .hero { padding: 24px 16px 16px; }
+            .hero h1 { font-size: 20px; }
+            .main { padding: 12px 12px 80px; }
+            .section-header { padding: 14px 14px; }
+            .section-inner { padding: 0 14px 14px; }
+            .fc-question { font-size: 17px; }
+            .q-text { font-size: 16px; }
+            .form-meta-row { grid-template-columns: 1fr; }
+            .ib { flex-wrap: wrap; }
+            .ib-action { flex-basis: 100%; margin-top: 2px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> Study Guide</div>
+            <h1>EHR Clinical Workflow &amp; Documentation</h1>
+            <p>Interactive guide for triage, sick calls, detox orders, provider documentation &amp; emergency incident reporting</p>
+        </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-strip">
+        <span class="progress-label">Mastery</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="guide"><i class="fa-solid fa-book-open"></i> Guide</button>
+        <button class="tab-btn" data-tab="forms"><i class="fa-solid fa-clipboard-list"></i> Forms <span class="tab-count">8</span></button>
+        <button class="tab-btn" data-tab="flashcards"><i class="fa-solid fa-clone"></i> Cards <span class="tab-count" id="fcCount">12</span></button>
+        <button class="tab-btn" data-tab="quiz"><i class="fa-solid fa-pen-to-square"></i> Quiz <span class="tab-count" id="qzCount">12</span></button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- ====== GUIDE TAB ====== -->
+        <div class="tab-panel active" id="panel-guide">
+
+            <!-- Section 1: Triage & Sick Call -->
+            <div class="section-card open" id="sec-triage">
+                <div class="section-header" onclick="toggleSection('sec-triage')">
+                    <div class="section-icon triage"><i class="fa-solid fa-stethoscope"></i></div>
+                    <div class="section-meta">
+                        <div class="section-title">I. Triage &amp; Sick Call Management</div>
+                        <div class="section-subtitle">HSR process, sick call workflow, compliance rules</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down section-chevron"></i>
+                </div>
+                <div class="section-body">
+                    <div class="section-inner">
+
+                        <div class="sub-heading">HSR (Health Service Request) Process</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">All workflows start from the selected Patient chart.</p>
+                        <div class="step-flow">
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Click <strong>FORMS</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select <strong>EXAM FORMS</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Scroll down and select the <strong>"Service Request Triage"</strong> form.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>Save and Lock</strong>.</div></div>
+                        </div>
+
+                        <div class="sub-heading">Sick Call Process</div>
+                        <ul class="bullet-list">
+                            <li>Click the <strong>Sick Calls</strong> tab.</li>
+                            <li>Select <strong>New Sick Call → Nurse → Begin</strong>.</li>
+                            <li>Open the <strong>Subjective Interview Form</strong>: select the problem/complaint, complete, <strong>Save and Lock</strong>, then close.</li>
+                            <li>Scroll to <strong>Objective</strong>: complete clinical findings, <strong>Save and Lock</strong>.</li>
+                        </ul>
+
+                        <div class="callout info">
+                            <div class="callout-title"><i class="fa-solid fa-clipboard-check"></i> Managing Generated Sick Call Tasks</div>
+                            <ul>
+                                <li>A completed HSR form generates a TASK for the sick call.</li>
+                                <li>Check the <span class="hl">"Today"</span> and <span class="hl">"Overdue"</span> tabs under TASKS.</li>
+                                <li>Click the clock icon → select <strong>"Begin Medical"</strong> → follow subjective/objective steps.</li>
+                            </ul>
+                        </div>
+
+                        <div class="callout danger">
+                            <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> Mandatory Compliance Rules</div>
+                            <ul>
+                                <li><strong>Timeframe:</strong> Sick calls MUST be completed within <span class="hl">48 hrs</span>.</li>
+                                <li><strong>Vitals:</strong> Height &amp; weight required on <strong>ALL</strong> sick calls alongside standard VS.</li>
+                                <li><strong>Paper Trail:</strong> Physical sick call paper needs <strong>FTF</strong>, date, and time by the assessing nurse.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Detox Med Orders -->
+            <div class="section-card" id="sec-detox">
+                <div class="section-header" onclick="toggleSection('sec-detox')">
+                    <div class="section-icon detox"><i class="fa-solid fa-pills"></i></div>
+                    <div class="section-meta">
+                        <div class="section-title">II. Detox Medication Orders</div>
+                        <div class="section-subtitle">Creating &amp; completing detox med order tasks</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down section-chevron"></i>
+                </div>
+                <div class="section-body">
+                    <div class="section-inner">
+
+                        <div class="sub-heading">Creating a Detox Med Order</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Used to communicate critical info with the provider (verified meds, positive drug tests, Pt concerns).</p>
+                        <div class="step-flow">
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Click on <strong>TASKS</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select <strong>ADD TASK</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Open the drop-down and choose <strong>Detox Med Order</strong>.</div></div>
+                        </div>
+
+                        <div class="callout warning">
+                            <div class="callout-title"><i class="fa-solid fa-exclamation-circle"></i> Prerequisite Documentation</div>
+                            <ul>
+                                <li>A detailed <strong>chart note</strong> or <strong>sick call</strong> must be completed FIRST before requesting a med/care plan change.</li>
+                            </ul>
+                        </div>
+
+                        <div class="sub-heading">Completing a Detox Med Order</div>
+                        <ul class="bullet-list">
+                            <li>Click <strong>TASKS</strong> → check <span class="hl">"Today"</span> or <span class="hl">"Overdue"</span> tabs.</li>
+                            <li>Click the <strong>clock</strong> icon for the correct task.</li>
+                            <li>Complete the task and create a short note at the bottom.</li>
+                            <li>Click <strong>Submit Change</strong>.</li>
+                            <li>If receiving new orders → complete a <strong>Medical Provider Form</strong> for verbal orders.</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Medical Provider Orders -->
+            <div class="section-card" id="sec-orders">
+                <div class="section-header" onclick="toggleSection('sec-orders')">
+                    <div class="section-icon orders"><i class="fa-solid fa-file-medical"></i></div>
+                    <div class="section-meta">
+                        <div class="section-title">III. Medical Provider Orders (Verbal)</div>
+                        <div class="section-subtitle">Documenting verbal orders from providers</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down section-chevron"></i>
+                </div>
+                <div class="section-body">
+                    <div class="section-inner">
+
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Strictly used to document verbal orders received directly from the provider.</p>
+                        <div class="step-flow">
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select the <strong>FORMS</strong> tab.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select <strong>EXAM FORMS</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Choose the second option: <strong>"Medical Provider Order"</strong> → select <strong>Begin</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select <strong>"No"</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Select preset orders <strong>OR</strong> use box <span class="hl">22</span> to free-type specific orders.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Ensure box <span class="hl">23</span> is checked <strong>"Yes"</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Enter the provider's name exactly in section <span class="hl">24</span>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>Save and Lock</strong>.</div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Medical Emergency Incident Report -->
+            <div class="section-card" id="sec-emergency">
+                <div class="section-header" onclick="toggleSection('sec-emergency')">
+                    <div class="section-icon emergency"><i class="fa-solid fa-kit-medical"></i></div>
+                    <div class="section-meta">
+                        <div class="section-title">IV. Medical Emergency — Incident Report</div>
+                        <div class="section-subtitle">Documenting emergencies: admin data, narrative, assessment &amp; interventions</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down section-chevron"></i>
+                </div>
+                <div class="section-body">
+                    <div class="section-inner">
+
+                        <div class="callout danger">
+                            <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> Critical: Time-Sensitive Documentation</div>
+                            <ul>
+                                <li>An <strong>Incident Report</strong> must be initiated <strong>immediately</strong> following any medical emergency.</li>
+                                <li>All four sections of the report must be completed <strong>in full</strong> before the end of the shift in which the incident occurred.</li>
+                            </ul>
+                        </div>
+
+                        <div class="sub-heading">Step 1 — Administrative Data</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Capture identifying information immediately to timestamp the event.</p>
+                        <div class="step-flow">
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Record the <strong>Date</strong> and <strong>Time</strong> of the incident.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Document the specific <strong>Location</strong> (housing unit / medical area).</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text">Enter <strong>Patient Name</strong> (Last, First M.) and <strong>Patient ID</strong>.</div></div>
+                        </div>
+
+                        <div class="sub-heading">Step 2 — Narrative Log</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Provide a clear, factual account of what happened.</p>
+                        <ul class="bullet-list">
+                            <li><strong>Initial Observation:</strong> Describe what was seen or heard immediately before or at the start of the event.</li>
+                            <li><strong>Sequence of Events:</strong> Document the timeline clearly — what happened first, second, etc. Include involvement of other staff members.</li>
+                        </ul>
+
+                        <div class="callout warning">
+                            <div class="callout-title"><i class="fa-solid fa-exclamation-circle"></i> Narrative Best Practices</div>
+                            <ul>
+                                <li>Use <strong>objective, factual language</strong> — avoid opinions or assumptions.</li>
+                                <li>Write events in <strong>chronological order</strong> with specific times where possible.</li>
+                                <li>Identify <strong>all staff involved</strong> by name and role.</li>
+                            </ul>
+                        </div>
+
+                        <div class="sub-heading">Step 3 — Clinical Assessment Log</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Complete a structured clinical evaluation of the patient.</p>
+                        <div class="step-flow">
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>Physical Exam:</strong> Document skin, head, extremities, and vitals observed.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>Injuries Noted:</strong> Record presence or absence of any injuries.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>Patient Statement:</strong> Document the patient's own words <strong>verbatim</strong>.</div></div>
+                            <div class="step-item"><div class="step-num"></div><div class="step-text"><strong>History Obtained:</strong> Record dietary, hydration, and medication history.</div></div>
+                        </div>
+
+                        <div class="callout success">
+                            <div class="callout-title"><i class="fa-solid fa-circle-check"></i> Assessment Reminder</div>
+                            <ul>
+                                <li>Patient statements must be recorded <strong>word-for-word</strong> (verbatim) — do not paraphrase.</li>
+                                <li>Document both the <strong>presence AND absence</strong> of injuries for a complete record.</li>
+                            </ul>
+                        </div>
+
+                        <div class="sub-heading">Step 4 — Interventions &amp; Actions</div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Record all treatments, directives, and monitoring actions taken.</p>
+                        <ul class="bullet-list">
+                            <li><strong>Treatment Administered:</strong> Document all medications given, including dosage.</li>
+                            <li><strong>Directives Given:</strong> Record any instructions given to staff or the patient.</li>
+                            <li><strong>Supervision:</strong> Document how the patient was monitored following the event.</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Hotlist -->
+            <div class="section-card" id="sec-hotlist">
+                <div class="section-header" onclick="toggleSection('sec-hotlist')">
+                    <div class="section-icon hotlist"><i class="fa-solid fa-fire"></i></div>
+                    <div class="section-meta">
+                        <div class="section-title">V. EHR Workflow Hotlist</div>
+                        <div class="section-subtitle">Must-know compliance checklist — tap items to mark complete</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down section-chevron"></i>
+                </div>
+                <div class="section-body">
+                    <div class="section-inner" id="hotlistItems">
+                        <!-- filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== ASSESSMENT FORMS TAB ====== -->
+        <div class="tab-panel" id="panel-forms">
+            <div id="formsContainer"></div>
+        </div>
+
+        <!-- ====== FLASHCARDS TAB ====== -->
+        <div class="tab-panel" id="panel-flashcards">
+            <div class="fc-controls">
+                <div class="fc-counter">Card <span id="fcCurrent">1</span> of <span id="fcTotal">8</span></div>
+                <button class="fc-shuffle" onclick="shuffleCards()"><i class="fa-solid fa-shuffle"></i> Shuffle</button>
+            </div>
+            <div class="fc-stage" onclick="flipCard()">
+                <div class="fc-card" id="fcCard">
+                    <div class="fc-face fc-front">
+                        <div class="fc-front-label">Question</div>
+                        <div class="fc-question" id="fcQuestion"></div>
+                        <div class="fc-tap-hint"><i class="fa-solid fa-hand-pointer"></i> Tap to reveal answer</div>
+                    </div>
+                    <div class="fc-face fc-back">
+                        <div class="fc-back-label">Answer</div>
+                        <div class="fc-answer" id="fcAnswer"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fc-nav">
+                <button class="fc-nav-btn" id="fcPrev" onclick="prevCard()"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                <button class="fc-nav-btn" id="fcNext" onclick="nextCard()">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- ====== QUIZ TAB ====== -->
+        <div class="tab-panel" id="panel-quiz">
+            <div class="quiz-intro" id="quizIntro">
+                <div class="quiz-intro-icon">🧠</div>
+                <h2>Test Your Knowledge</h2>
+                <p>12 questions covering triage, sick calls, detox orders, verbal orders, and emergency incident reporting.</p>
+                <button class="btn-start" onclick="startQuiz()"><i class="fa-solid fa-play"></i> Start Quiz</button>
+            </div>
+            <div class="quiz-area" id="quizArea">
+                <div class="quiz-progress-bar" id="quizPips"></div>
+                <div class="q-card">
+                    <div class="q-number" id="qNumber"></div>
+                    <div class="q-text" id="qText"></div>
+                    <div class="q-options" id="qOptions"></div>
+                    <div class="q-explanation" id="qExplanation"></div>
+                    <div class="q-next-wrap" id="qNextWrap">
+                        <button class="btn-next" id="btnNext" onclick="nextQuestion()">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="quiz-results" id="quizResults">
+                <div style="font-size:42px;">🏆</div>
+                <div class="results-score" id="resScore"></div>
+                <div class="results-label" id="resLabel"></div>
+                <div class="results-message" id="resMsg"></div>
+                <button class="btn-retry" onclick="startQuiz()"><i class="fa-solid fa-rotate-right"></i> Retry Quiz</button>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+/* ── Dark Mode ── */
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark');
+}
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(event) {
+    if (event.matches) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+});
+
+/* ── Tab Switching ── */
+var tabBtns = document.querySelectorAll('.tab-btn');
+tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        tabBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+});
+
+/* ── Accordion ── */
+function toggleSection(id) {
+    var el = document.getElementById(id);
+    el.classList.toggle('open');
+}
+
+/* ── Progress Tracking ── */
+var masteryState = { hotlist: 0, hotlistTotal: 11, quizBest: 0, quizTotal: 12, cardsViewed: 0, cardsTotal: 12 };
+function updateProgress() {
+    var hotlistPart = masteryState.hotlist / masteryState.hotlistTotal;
+    var quizPart = masteryState.quizBest / masteryState.quizTotal;
+    var cardPart = masteryState.cardsViewed / masteryState.cardsTotal;
+    var pct = Math.round((hotlistPart * 0.3 + quizPart * 0.5 + cardPart * 0.2) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+}
+
+/* ── Hotlist Checklist ── */
+var hotlistData = [
+    { tag: 'TQ', text: '<strong>Sick Call Deadline:</strong> All sick calls generated by an HSR must be completed within <span class="hl">48 hrs</span>.' },
+    { tag: 'TQ', text: '<strong>Mandatory Vitals:</strong> Height and Weight are universally required on ALL sick call forms alongside standard VS.' },
+    { tag: 'TQ', text: '<strong>Paper Trail:</strong> Physical sick call paper requires FTF (Face-to-Face), Date, and Time by the assessing nurse.' },
+    { tag: 'TQ', text: '<strong>Task Location:</strong> Check <span class="hl">"Today"</span> and <span class="hl">"Overdue"</span> tabs frequently under TASKS.' },
+    { tag: 'TQ', text: '<strong>Communication Rule:</strong> Before requesting a care plan/med change via Detox Med Order, a detailed chart note or sick call must be locked first.' },
+    { tag: 'TQ', text: '<strong>Verbal Orders Location:</strong> FORMS → EXAM FORMS → "Medical Provider Order".' },
+    { tag: 'TQ', text: '<strong>Free-Typing Orders:</strong> Use box <span class="hl">22</span>. Ensure box <span class="hl">23</span> = "Yes" and Provider name in section <span class="hl">24</span>.' },
+    { tag: 'TQ', text: '<strong>Final Step:</strong> Every form workflow concludes with <strong>Save and Lock</strong>.' },
+    { tag: 'TQ', text: '<strong>Incident Report — Admin Data:</strong> Record <span class="hl">Date</span>, <span class="hl">Time</span>, <span class="hl">Location</span>, Patient Name, and Patient ID immediately.' },
+    { tag: 'TQ', text: '<strong>Incident Report — Narrative Log:</strong> Document Initial Observation and Sequence of Events in chronological, objective language.' },
+    { tag: 'TQ', text: '<strong>Incident Report — Patient Statement:</strong> Must be recorded <strong>verbatim</strong> (word-for-word) — never paraphrased.' },
+];
+function renderHotlist() {
+    var container = document.getElementById('hotlistItems');
+    container.innerHTML = '';
+    hotlistData.forEach(function(item, idx) {
+        var div = document.createElement('div');
+        div.className = 'check-item';
+        div.dataset.idx = idx;
+        div.innerHTML = '<div class="check-box"><i class="fa-solid fa-check"></i></div><div class="check-label"><span class="tq-tag">' + item.tag + '</span> ' + item.text + '</div>';
+        div.addEventListener('click', function() {
+            div.classList.toggle('checked');
+            masteryState.hotlist = document.querySelectorAll('.check-item.checked').length;
+            updateProgress();
+        });
+        container.appendChild(div);
+    });
+}
+renderHotlist();
+
+/* ── Flashcards ── */
+var flashcards = [
+    { q: 'What is the first step in the HSR triage process?', a: 'Click <strong>FORMS</strong>, then select <strong>EXAM FORMS</strong>, and choose the "Service Request Triage" form.' },
+    { q: 'What is the mandatory timeframe for completing a sick call?', a: 'Sick calls must be completed within <strong>48 hours</strong> of being generated by an HSR.' },
+    { q: 'What vitals are strictly required on ALL sick calls?', a: '<strong>Height and Weight</strong> must be entered on all sick calls alongside standard vital signs.' },
+    { q: 'What must be written on the physical sick call paper?', a: '<strong>FTF (Face-to-Face)</strong>, the <strong>date</strong>, and the <strong>time</strong> — written by the assessing nurse.' },
+    { q: 'What must be completed BEFORE creating a Detox Med Order?', a: 'A detailed <strong>chart note</strong> or <strong>sick call</strong> must be locked in the chart first.' },
+    { q: 'Where do you find generated Sick Call and Detox Med Order tasks?', a: 'Under the <strong>TASKS</strong> tab — check the <strong>"Today"</strong> and <strong>"Overdue"</strong> tabs.' },
+    { q: 'Where do you document verbal orders from a provider?', a: '<strong>FORMS → EXAM FORMS → "Medical Provider Order"</strong>.' },
+    { q: 'Which boxes are critical when free-typing verbal orders?', a: 'Box <strong>22</strong> for free-typing orders, box <strong>23</strong> checked "Yes", and provider name in section <strong>24</strong>.' },
+    { q: 'What are the 4 sections of a Medical Incident Report?', a: '<strong>1.</strong> Administrative Data, <strong>2.</strong> Narrative Log, <strong>3.</strong> Clinical Assessment Log, <strong>4.</strong> Interventions &amp; Actions.' },
+    { q: 'What Administrative Data must be captured immediately in an Incident Report?', a: '<strong>Date</strong>, <strong>Time</strong>, specific <strong>Location</strong> (housing unit/medical area), <strong>Patient Name</strong> (Last, First M.), and <strong>Patient ID</strong>.' },
+    { q: 'What two components make up the Narrative Log?', a: '<strong>Initial Observation</strong> (what was seen/heard at the start) and <strong>Sequence of Events</strong> (chronological timeline including staff involvement).' },
+    { q: 'How must a patient statement be documented in the Clinical Assessment Log?', a: 'Patient statements must be recorded <strong>verbatim</strong> (word-for-word) — never paraphrased or summarized.' },
+];
+var fcIndex = 0;
+var fcOrder = flashcards.map(function(_, i) { return i; });
+var viewedCards = {};
+
+function renderCard() {
+    var card = flashcards[fcOrder[fcIndex]];
+    document.getElementById('fcQuestion').innerHTML = card.q;
+    document.getElementById('fcAnswer').innerHTML = card.a;
+    document.getElementById('fcCard').classList.remove('flipped');
+    document.getElementById('fcCurrent').textContent = fcIndex + 1;
+    document.getElementById('fcTotal').textContent = flashcards.length;
+    document.getElementById('fcPrev').disabled = fcIndex === 0;
+    document.getElementById('fcNext').disabled = fcIndex === flashcards.length - 1;
+    viewedCards[fcOrder[fcIndex]] = true;
+    masteryState.cardsViewed = Object.keys(viewedCards).length;
+    updateProgress();
+}
+function flipCard() {
+    document.getElementById('fcCard').classList.toggle('flipped');
+}
+function nextCard() {
+    if (fcIndex < flashcards.length - 1) { fcIndex++; renderCard(); }
+}
+function prevCard() {
+    if (fcIndex > 0) { fcIndex--; renderCard(); }
+}
+function shuffleCards() {
+    for (var i = fcOrder.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = fcOrder[i]; fcOrder[i] = fcOrder[j]; fcOrder[j] = temp;
+    }
+    fcIndex = 0;
+    renderCard();
+}
+renderCard();
+
+/* ── Quiz ── */
+var quizQuestions = [
+    {
+        q: 'What is the correct navigation path to start an HSR triage?',
+        options: ['TASKS → ADD TASK → Service Request Triage', 'FORMS → EXAM FORMS → Service Request Triage', 'Sick Calls → New Sick Call → Triage', 'FORMS → SICK CALL FORMS → Triage'],
+        correct: 1,
+        explain: 'The HSR process starts by clicking FORMS, selecting EXAM FORMS, then choosing the "Service Request Triage" form.'
+    },
+    {
+        q: 'Within what time period must sick calls be completed?',
+        options: ['24 hours', '48 hours', '72 hours', '36 hours'],
+        correct: 1,
+        explain: 'Sick calls generated by an HSR must be completed within 48 hours — this is a mandatory compliance rule.'
+    },
+    {
+        q: 'Which vitals are UNIVERSALLY required on every sick call form?',
+        options: ['Blood pressure and heart rate only', 'Temperature and respiratory rate', 'Height and weight alongside standard VS', 'SpO2 and blood glucose'],
+        correct: 2,
+        explain: 'Height and Weight must be entered on ALL sick calls alongside standard vital signs. This is a non-negotiable compliance requirement.'
+    },
+    {
+        q: 'What must be documented on the physical sick call paper by the assessing nurse?',
+        options: ['Patient signature and complaint', 'FTF (Face-to-Face), date, and time', 'Medication list and allergies', 'Diagnosis code and treatment plan'],
+        correct: 1,
+        explain: 'The physical sick call paper requires FTF (Face-to-Face), the date, and the time — all written by the specific nurse seeing the patient.'
+    },
+    {
+        q: 'What prerequisite must be met BEFORE creating a Detox Med Order for a care plan change?',
+        options: ['Provider must pre-approve via phone', 'A detailed chart note or sick call must be locked in the chart', 'The patient must sign a consent form', 'A supervisor must co-sign the request'],
+        correct: 1,
+        explain: 'Before using a Detox Med Order to request a medication or care plan change, a detailed chart note or sick call must be completed and locked first.'
+    },
+    {
+        q: 'Where do you navigate to document verbal orders from a provider?',
+        options: ['TASKS → Verbal Orders', 'FORMS → EXAM FORMS → Medical Provider Order', 'Sick Calls → Provider Orders', 'CHARTS → New Note → Verbal Order'],
+        correct: 1,
+        explain: 'Verbal orders are documented via FORMS → EXAM FORMS → selecting "Medical Provider Order" (the second option).'
+    },
+    {
+        q: 'When free-typing verbal orders, which box number is used?',
+        options: ['Box 18', 'Box 20', 'Box 22', 'Box 25'],
+        correct: 2,
+        explain: 'Box 22 is used to free-type specific verbal orders. Box 23 must be checked "Yes" and the provider\'s name entered in section 24.'
+    },
+    {
+        q: 'How do you initiate a sick call from a generated task?',
+        options: ['Double-click the task name', 'Right-click and select "Open Sick Call"', 'Click the clock icon next to the task, then select "Begin Medical"', 'Drag the task to the Sick Calls tab'],
+        correct: 2,
+        explain: 'Under the TASKS tab, click the clock icon next to the desired task, then select "Begin Medical" to initiate the sick call forms.'
+    },
+    {
+        q: 'What are the four sections of a Medical Incident Report?',
+        options: ['Patient Info, Diagnosis, Treatment, Discharge', 'Administrative Data, Narrative Log, Clinical Assessment Log, Interventions & Actions', 'Triage, Exam, Orders, Follow-up', 'Intake, Subjective, Objective, Plan'],
+        correct: 1,
+        explain: 'The Incident Report has four required sections: Administrative Data, Narrative Log, Clinical Assessment Log, and Interventions & Actions.'
+    },
+    {
+        q: 'Which of the following is NOT part of the Administrative Data section of an Incident Report?',
+        options: ['Date and Time', 'Location (housing unit/medical area)', 'Patient statement', 'Patient Name and ID'],
+        correct: 2,
+        explain: 'Patient statement belongs in the Clinical Assessment Log section. Administrative Data captures Date, Time, Location, Patient Name, and Patient ID.'
+    },
+    {
+        q: 'How must a patient\'s own account of the incident be documented in the Clinical Assessment Log?',
+        options: ['Summarized in the nurse\'s own words', 'Recorded verbatim (word-for-word)', 'Omitted if the patient is uncooperative', 'Paraphrased with clinical terminology'],
+        correct: 1,
+        explain: 'Patient statements must be documented verbatim — recorded word-for-word exactly as the patient said them, never paraphrased or summarized.'
+    },
+    {
+        q: 'What three categories must be documented under Interventions & Actions?',
+        options: ['Diagnosis, Prognosis, Referral', 'Treatment Administered, Directives Given, Supervision', 'Medications, Vitals, Discharge Plan', 'Assessment, Plan, Follow-up'],
+        correct: 1,
+        explain: 'The Interventions & Actions section requires documentation of Treatment Administered (meds/dosage), Directives Given (instructions to staff/patient), and Supervision (how the patient was monitored).'
+    },
+];
+
+var quizState = { current: 0, score: 0, answers: [], active: false };
+
+function startQuiz() {
+    quizState = { current: 0, score: 0, answers: [], active: true };
+    document.getElementById('quizIntro').style.display = 'none';
+    document.getElementById('quizResults').classList.remove('active');
+    document.getElementById('quizArea').classList.add('active');
+    renderPips();
+    renderQuestion();
+}
+
+function renderPips() {
+    var html = '';
+    quizQuestions.forEach(function(_, i) {
+        var cls = 'quiz-pip';
+        if (i < quizState.answers.length) {
+            cls += quizState.answers[i] ? ' done' : ' wrong';
+        } else if (i === quizState.current) {
+            cls += ' current';
+        }
+        html += '<div class="' + cls + '"></div>';
+    });
+    document.getElementById('quizPips').innerHTML = html;
+}
+
+function renderQuestion() {
+    var q = quizQuestions[quizState.current];
+    document.getElementById('qNumber').textContent = 'Question ' + (quizState.current + 1) + ' of ' + quizQuestions.length;
+    document.getElementById('qText').textContent = q.q;
+    var letters = ['A', 'B', 'C', 'D'];
+    var optHtml = '';
+    q.options.forEach(function(opt, i) {
+        optHtml += '<div class="q-option" data-idx="' + i + '" onclick="selectAnswer(this,' + i + ')"><div class="q-letter">' + letters[i] + '</div><div>' + opt + '</div></div>';
+    });
+    document.getElementById('qOptions').innerHTML = optHtml;
+    document.getElementById('qExplanation').className = 'q-explanation';
+    document.getElementById('qExplanation').innerHTML = '';
+    document.getElementById('qNextWrap').classList.remove('show');
+    if (quizState.current === quizQuestions.length - 1) {
+        document.getElementById('btnNext').innerHTML = 'See Results <i class="fa-solid fa-trophy"></i>';
+    } else {
+        document.getElementById('btnNext').innerHTML = 'Next <i class="fa-solid fa-arrow-right"></i>';
+    }
+}
+
+function selectAnswer(el, idx) {
+    if (el.classList.contains('disabled')) return;
+    var q = quizQuestions[quizState.current];
+    var opts = document.querySelectorAll('#qOptions .q-option');
+    opts.forEach(function(o) { o.classList.add('disabled'); });
+
+    var isCorrect = idx === q.correct;
+    if (isCorrect) {
+        el.classList.add('correct');
+        quizState.score++;
+    } else {
+        el.classList.add('wrong');
+        opts[q.correct].classList.add('correct');
+    }
+    quizState.answers.push(isCorrect);
+    renderPips();
+
+    var expEl = document.getElementById('qExplanation');
+    expEl.className = 'q-explanation show ' + (isCorrect ? 'correct-exp' : 'wrong-exp');
+    expEl.innerHTML = '<strong>' + (isCorrect ? '✓ Correct!' : '✗ Incorrect') + '</strong> — ' + q.explain;
+    document.getElementById('qNextWrap').classList.add('show');
+}
+
+function nextQuestion() {
+    quizState.current++;
+    if (quizState.current >= quizQuestions.length) {
+        showResults();
+        return;
+    }
+    renderPips();
+    renderQuestion();
+}
+
+function showResults() {
+    document.getElementById('quizArea').classList.remove('active');
+    var res = document.getElementById('quizResults');
+    res.classList.add('active');
+    var pct = Math.round((quizState.score / quizQuestions.length) * 100);
+    document.getElementById('resScore').textContent = pct + '%';
+    document.getElementById('resLabel').textContent = quizState.score + ' out of ' + quizQuestions.length + ' correct';
+
+    var msg = '';
+    if (pct === 100) msg = 'Perfect score! You\'ve mastered the EHR clinical workflows.';
+    else if (pct >= 75) msg = 'Great job! Review the sections you missed for full mastery.';
+    else if (pct >= 50) msg = 'Good start. Revisit the guide and flashcards to strengthen your knowledge.';
+    else msg = 'Keep studying! Use the guide and flashcards to review the material.';
+    document.getElementById('resMsg').textContent = msg;
+
+    if (quizState.score > masteryState.quizBest) {
+        masteryState.quizBest = quizState.score;
+    }
+    updateProgress();
+}
+
+/* ── Assessment Forms Data & Render ── */
+var formDataMap = {
+cows: {
+    id:'cows', abbrev:'COWS', name:'Clinical Opiate Withdrawal Scale',
+    iconClass:'opioid', icon:'syringe',
+    purpose:'Quantifies opioid withdrawal severity on an 11-item scale. Used to determine when to initiate MAT (Medication-Assisted Treatment) such as buprenorphine/Suboxone and to monitor withdrawal progression over time.',
+    when:'Upon intake when opioid use is suspected or confirmed; prior to MAT initiation; during active detox monitoring.',
+    freq:'Every 4\u20138 hours during active withdrawal, or as ordered by the provider.',
+    type:'scale', maxScore:47,
+    headers:['Item','Assessment','Scoring Criteria'],
+    items:[
+        ['Resting Pulse Rate','Measure after patient is seated or lying for 1 minute','0=\u226480 bpm \xB7 1=81\u2013100 \xB7 2=101\u2013120 \xB7 4=>120'],
+        ['Sweating','Observe over last 30 min; not accounted for by room temp or activity','0=No chills or flushing \xB7 1=Subjective report only \xB7 2=Flushed or observable moisture \xB7 3=Beads of sweat on brow \xB7 4=Sweat streaming off face'],
+        ['Restlessness','Observe during assessment','0=Able to sit still \xB7 1=Reports difficulty but able \xB7 3=Frequent shifting or acathisia \xB7 5=Unable to sit still for more than seconds'],
+        ['Pupil Size','Observe in normal room lighting','0=Pinned or normal \xB7 1=Possibly larger than normal \xB7 2=Moderately dilated \xB7 5=So dilated only iris rim visible'],
+        ['Bone or Joint Aches','Ask patient; assess for changes if pre-existing pain','0=Not present \xB7 1=Mild diffuse discomfort \xB7 2=Severe diffuse joint/muscle aching \xB7 4=Rubbing joints, unable to sit still from discomfort'],
+        ['Runny Nose or Tearing','Observe; not accounted for by cold or allergies','0=Not present \xB7 1=Nasal stuffiness or moist eyes \xB7 2=Nose running or tearing \xB7 4=Nose constantly running or tears streaming'],
+        ['GI Upset','Observe and ask over last 30 min','0=No GI symptoms \xB7 1=Stomach cramps \xB7 2=Nausea or loose stool \xB7 3=Vomiting or diarrhea \xB7 5=Multiple episodes of vomiting/diarrhea'],
+        ['Tremor','Observe outstretched hands','0=No tremor \xB7 1=Can be felt, not observed \xB7 2=Slight visible tremor \xB7 4=Gross tremor or muscle twitching'],
+        ['Yawning','Observe during assessment','0=No yawning \xB7 1=Once or twice \xB7 2=Three or more times \xB7 4=Several times per minute'],
+        ['Anxiety or Irritability','Assess and observe behavior','0=None \xB7 1=Reports increasing anxiety \xB7 2=Obviously irritable or anxious \xB7 4=So anxious/irritable that assessment is difficult'],
+        ['Gooseflesh Skin','Observe exposed skin (arms)','0=Skin is smooth \xB7 3=Piloerection can be felt or hairs standing \xB7 5=Prominent piloerection']
+    ],
+    interp:[
+        ['5\u201312','Mild','green','Monitor closely; comfort measures; pharmacological intervention may not be required'],
+        ['13\u201324','Moderate','amber','Medical management recommended; consider initiating MAT (e.g., buprenorphine)'],
+        ['25\u201336','Moderately Severe','orange','Aggressive medical management; MAT initiation strongly indicated'],
+        ['>36','Severe','red','Intensive monitoring; immediate medical intervention and MAT required']
+    ],
+    note:'A COWS score of \u22658\u201312 is generally the threshold for initiating buprenorphine (Suboxone). Starting buprenorphine too early risks precipitated withdrawal. Always confirm with provider orders.'
+},
+oows: {
+    id:'oows', abbrev:'OOWS', name:'Objective Opiate Withdrawal Scale',
+    iconClass:'opioid', icon:'eye',
+    purpose:'A 13-item observational scale that measures physically observable signs of opioid withdrawal. Unlike the COWS, the OOWS relies entirely on nurse observation\u2014no patient self-report is required. Often used alongside COWS for a comprehensive assessment.',
+    when:'Alongside or as a supplement to COWS during opioid detox monitoring; useful when patient is uncooperative or unreliable in self-reporting.',
+    freq:'Every 4\u20138 hours during active withdrawal, concurrent with COWS assessments.',
+    type:'binary', maxScore:13,
+    headers:['Observable Sign','What to Look For (Present = 1, Absent = 0)'],
+    items:[
+        ['Yawning','\u22652 yawns observed during a 10-minute observation period'],
+        ['Rhinorrhea','Sniffing or wiping nose \u22653 times during observation'],
+        ['Piloerection','Observable gooseflesh on exposed skin (arms, legs)'],
+        ['Perspiration','Visible sweating on face, palms, or body not due to environment'],
+        ['Lacrimation','Watery eyes or observed wiping/rubbing eyes'],
+        ['Tremor','Observable shaking or trembling of outstretched hands'],
+        ['Mydriasis','Pupils visibly dilated beyond normal for lighting conditions'],
+        ['Hot/Cold Flushes','Shivering, huddling for warmth, or visibly flushed skin'],
+        ['Restlessness','Frequent changes in position, inability to remain seated/still'],
+        ['Vomiting','Any observed emesis during or reported since last assessment'],
+        ['Muscle Twitches','Visible involuntary muscle jerks or spasms'],
+        ['Abdominal Cramps','Holding or guarding stomach; pain response on light palpation'],
+        ['Anxiety','Fidgeting, fearful appearance, visible agitation or distress']
+    ],
+    interp:[
+        ['0\u20133','Minimal/None','green','Continue monitoring at scheduled intervals'],
+        ['4\u20135','Mild','amber','Increase monitoring frequency; consider comfort measures and notify provider'],
+        ['6\u20139','Moderate','orange','Medical management indicated; notify provider for medication orders'],
+        ['10\u201313','Severe','red','Immediate medical intervention; intensive monitoring required']
+    ],
+    note:'OOWS is purely observational. It complements the COWS by removing patient self-report bias. Use both scales together for the most accurate clinical picture.'
+},
+ciwa_ar: {
+    id:'ciwa_ar', abbrev:'CIWA-Ar', name:'Clinical Institute Withdrawal Assessment for Alcohol \u2014 Revised',
+    iconClass:'alcohol', icon:'wine-bottle',
+    purpose:'The gold-standard 10-item scale for monitoring alcohol withdrawal severity. Guides pharmacological treatment decisions (e.g., benzodiazepine dosing via symptom-triggered therapy) and identifies patients at risk for seizures or delirium tremens (DTs).',
+    when:'Upon admission when alcohol use disorder or recent heavy alcohol use is identified; during active alcohol detox.',
+    freq:'Every 1\u20132 hours during acute withdrawal; every 4\u20138 hours once stabilized (score <10 for 24 hrs). PRN if symptoms escalate.',
+    type:'scale', maxScore:67,
+    headers:['Item','Assessment','Scoring Criteria'],
+    items:[
+        ['Nausea & Vomiting','Ask and observe over last 30 min','0=None \xB7 1=Mild nausea, no vomiting \xB7 4=Intermittent nausea, dry heaves \xB7 7=Constant nausea, frequent vomiting'],
+        ['Tremor','Observe outstretched hands and extended arms','0=None \xB7 1=Not visible, felt fingertip to fingertip \xB7 4=Moderate with arms extended \xB7 7=Severe even with arms not extended'],
+        ['Paroxysmal Sweats','Observe','0=No sweat visible \xB7 1=Barely perceptible, palms moist \xB7 4=Beads of sweat obvious on forehead \xB7 7=Drenching sweats'],
+        ['Anxiety','Assess and observe state','0=No anxiety, at ease \xB7 1=Mildly anxious \xB7 4=Moderately anxious or guarded \xB7 7=Equivalent to acute panic states'],
+        ['Agitation','Observe motor activity','0=Normal activity \xB7 1=Somewhat more than normal \xB7 4=Moderately fidgety/restless \xB7 7=Paces or constantly thrashes about'],
+        ['Tactile Disturbances','Ask about itching, numbness, burning, or sensation of insects','0=None \xB7 1=Mild itching, pins & needles, numbness \xB7 3=Moderate sensations \xB7 5=Severe hallucinations \xB7 7=Continuous tactile hallucinations'],
+        ['Auditory Disturbances','Ask if sounds are harsh or frightening, or if they hear anything','0=Not present \xB7 1=Mildly harsh or startling \xB7 3=Moderate sensitivity \xB7 5=Severe auditory hallucinations \xB7 7=Continuous auditory hallucinations'],
+        ['Visual Disturbances','Ask about light sensitivity or if they see anything unusual','0=Not present \xB7 1=Mild sensitivity \xB7 3=Moderate sensitivity \xB7 5=Severe visual hallucinations \xB7 7=Continuous visual hallucinations'],
+        ['Headache','Ask "Does your head feel different? Does it feel like a band around it?" Do not rate for dizziness or lightheadedness','0=Not present \xB7 1=Very mild \xB7 3=Moderate \xB7 5=Severe \xB7 7=Extremely severe'],
+        ['Orientation & Clouding','Assess: What day is this? Where are you? Who am I?','0=Oriented, can do serial additions \xB7 1=Uncertain about date \xB7 2=Date uncertain by >2 days \xB7 3=Disoriented in date by >2 days \xB7 4=Disoriented in place and/or person']
+    ],
+    interp:[
+        ['\u22648','Mild','green','Monitoring only; medication may not be necessary'],
+        ['9\u201315','Moderate','amber','Symptom-triggered benzodiazepine therapy recommended; close monitoring'],
+        ['16\u201320','Moderately Severe','orange','Medical management and close monitoring; higher benzo doses may be needed'],
+        ['>20','Severe','red','Risk for seizures/DTs; consider ICU-level care; aggressive pharmacotherapy']
+    ],
+    note:'Scores \u226515 carry significant seizure risk. Scores >20 indicate life-threatening withdrawal. Symptom-triggered therapy (dosing only when CIWA-Ar \u226510) is preferred over fixed-schedule dosing for most patients.'
+},
+ciwa_b: {
+    id:'ciwa_b', abbrev:'CIWA-B', name:'Clinical Institute Withdrawal Assessment for Benzodiazepines',
+    iconClass:'benzo', icon:'capsules',
+    purpose:'Assesses the severity of benzodiazepine withdrawal symptoms across 20 domains. Benzodiazepine withdrawal can be protracted and life-threatening (seizure risk). This scale guides tapering decisions and identifies patients needing escalated care.',
+    when:'Upon intake when benzodiazepine use/dependence is identified; during active benzodiazepine taper or detox.',
+    freq:'Every 4\u20138 hours during acute taper phase; every 8\u201312 hours once stabilized. Increase frequency if score rises.',
+    type:'scale', maxScore:80,
+    headers:['Item','Scoring: 0 = None \xB7 1 = Mild \xB7 2 = Moderate \xB7 3 = Severe \xB7 4 = Very Severe'],
+    items:[
+        ['Anxiety','0=None \xB7 1=Slight unease \xB7 2=Moderate, reports difficulty relaxing \xB7 3=Severe, constant worry \xB7 4=Panic-level anxiety'],
+        ['Irritability / Agitation','0=None \xB7 1=Slightly more irritable \xB7 2=Noticeably agitated \xB7 3=Very irritable, snaps at others \xB7 4=Hostile or aggressive behavior'],
+        ['Insomnia / Sleep Disturbance','0=Normal sleep \xB7 1=Mild difficulty falling asleep \xB7 2=Significantly disrupted sleep \xB7 3=Severe insomnia, <2 hrs sleep \xB7 4=Unable to sleep at all'],
+        ['Fatigue / Weakness','0=Normal energy \xB7 1=Slightly fatigued \xB7 2=Moderate fatigue, reduced activity \xB7 3=Severe fatigue, difficulty with ADLs \xB7 4=Extreme exhaustion, bedbound'],
+        ['Headache','0=None \xB7 1=Mild \xB7 2=Moderate, constant \xB7 3=Severe \xB7 4=Unbearable'],
+        ['Muscle Pain / Stiffness','0=None \xB7 1=Mild aching \xB7 2=Moderate pain, multiple areas \xB7 3=Severe, limits movement \xB7 4=Extreme, unable to move comfortably'],
+        ['Tremor','0=None \xB7 1=Barely perceptible \xB7 2=Visible with arms extended \xB7 3=Moderate, affects function \xB7 4=Gross, continuous tremor'],
+        ['Sweating','0=None \xB7 1=Palms moist \xB7 2=Visible perspiration \xB7 3=Beads of sweat \xB7 4=Drenching sweats'],
+        ['Hypersensitivity to Light','0=None \xB7 1=Mildly bothersome \xB7 2=Seeks dim areas \xB7 3=Requires dark environment \xB7 4=Intolerable, severe photophobia'],
+        ['Hypersensitivity to Sound','0=None \xB7 1=Normal sounds slightly loud \xB7 2=Moderate sensitivity \xB7 3=Seeks silence \xB7 4=Intolerable, severe hyperacusis'],
+        ['Hypersensitivity to Touch','0=None \xB7 1=Mild awareness \xB7 2=Moderate discomfort from normal contact \xB7 3=Avoids all contact \xB7 4=Intolerable, allodynia'],
+        ['Paresthesias','0=None \xB7 1=Mild numbness/tingling \xB7 2=Frequent tingling \xB7 3=Constant burning/numbness \xB7 4=Severe, distressing paresthesias'],
+        ['Nausea / Appetite Loss','0=Normal appetite \xB7 1=Mild nausea, reduced appetite \xB7 2=Moderate nausea, eating minimal \xB7 3=Severe nausea, unable to eat \xB7 4=Vomiting or dry heaves'],
+        ['Perceptual Disturbances','0=None \xB7 1=Mild visual/auditory changes \xB7 2=Illusions present \xB7 3=Intermittent hallucinations \xB7 4=Continuous hallucinations'],
+        ['Depersonalization / Derealization','0=None \xB7 1=Mild feelings of unreality \xB7 2=Moderate, reports detachment \xB7 3=Severe, frightening \xB7 4=Complete dissociation'],
+        ['Difficulty Concentrating','0=Normal \xB7 1=Mild difficulty \xB7 2=Moderate, affects tasks \xB7 3=Severe, cannot complete tasks \xB7 4=Unable to focus at all'],
+        ['Memory Impairment','0=Normal \xB7 1=Mild forgetfulness \xB7 2=Moderate gaps \xB7 3=Severe, disoriented \xB7 4=Profound confusion'],
+        ['Restlessness','0=Still \xB7 1=Slightly restless \xB7 2=Cannot sit for long \xB7 3=Pacing, very restless \xB7 4=Constant purposeless movement'],
+        ['Heart Palpitations','0=None \xB7 1=Occasional awareness \xB7 2=Frequent palpitations \xB7 3=Constant rapid heartbeat \xB7 4=Chest discomfort with palpitations'],
+        ['Paranoid Ideation','0=None \xB7 1=Vague suspiciousness \xB7 2=Moderate distrust \xB7 3=Convinced of persecution \xB7 4=Extreme paranoia, affects behavior']
+    ],
+    interp:[
+        ['0\u201320','Minimal','green','Continue current taper schedule; monitor at routine intervals'],
+        ['21\u201340','Mild','amber','Consider slowing taper; increase monitoring frequency; comfort measures'],
+        ['41\u201360','Moderate','orange','Hold or slow taper; medical management; notify provider for medication adjustment'],
+        ['61\u201380','Severe','red','Stop taper; immediate medical evaluation; seizure precautions; possible hospitalization']
+    ],
+    note:'Benzodiazepine withdrawal can cause life-threatening seizures. Unlike alcohol withdrawal, benzo withdrawal can be protracted (weeks to months). Never abruptly discontinue benzodiazepines\u2014always use a gradual taper under provider supervision.'
+},
+cage: {
+    id:'cage', abbrev:'CAGE', name:'CAGE Alcohol Screening Questionnaire',
+    iconClass:'screening', icon:'clipboard-question',
+    purpose:'A rapid 4-question screening tool to identify patients who may have an alcohol use disorder. The acronym CAGE stands for Cut down, Annoyed, Guilty, Eye-opener. It is a screening tool only\u2014not diagnostic\u2014and positive results should prompt further assessment.',
+    when:'At intake/booking; during initial health screening; whenever alcohol misuse is suspected.',
+    freq:'Once at intake; repeat if clinical suspicion arises or as part of periodic health reviews.',
+    type:'questions', maxScore:4,
+    qLabel:'Ask the Patient (Yes = 1, No = 0)',
+    items:[
+        '<strong>C \u2014 Cut down:</strong> Have you ever felt you should <strong>cut down</strong> on your drinking?',
+        '<strong>A \u2014 Annoyed:</strong> Have people <strong>annoyed</strong> you by criticizing your drinking?',
+        '<strong>G \u2014 Guilty:</strong> Have you ever felt bad or <strong>guilty</strong> about your drinking?',
+        '<strong>E \u2014 Eye-opener:</strong> Have you ever had a drink first thing in the morning (<strong>eye-opener</strong>) to steady your nerves or get rid of a hangover?'
+    ],
+    interp:[
+        ['0\u20131','Low Risk','green','Negative screen; no immediate concern; document and continue standard care'],
+        ['\u22652','Clinically Significant','amber','Positive screen\u2014indicates probable alcohol dependence; initiate CIWA-Ar monitoring and refer for further evaluation'],
+        ['4','High Risk','red','Strongly suggestive of severe alcohol dependence; prioritize detox assessment and provider notification']
+    ],
+    note:'CAGE is a screening tool, not a diagnostic instrument. A score \u22652 has ~93% sensitivity for identifying alcohol problems. Always follow up a positive CAGE with a comprehensive assessment (CIWA-Ar, ASI, or provider evaluation).'
+},
+dast10: {
+    id:'dast10', abbrev:'DAST-10', name:'Drug Abuse Screening Test \u2014 10 Item',
+    iconClass:'screening', icon:'prescription-bottle-medical',
+    purpose:'A 10-item self-report questionnaire that screens for drug use problems (excluding alcohol and tobacco). Provides a quantitative index of the degree of drug-related consequences to guide level of intervention needed.',
+    when:'At intake/booking; during initial health assessment; when illicit or non-prescribed drug use is suspected.',
+    freq:'Once at intake; repeat at periodic health reviews or when substance use concerns arise.',
+    type:'questions', maxScore:10,
+    qLabel:'Ask the Patient About the Past 12 Months (Yes = 1, No = 0)',
+    items:[
+        'Have you used drugs other than those required for medical reasons?',
+        'Do you abuse more than one drug at a time?',
+        'Are you unable to stop using drugs when you want to?',
+        'Have you ever had blackouts or flashbacks as a result of drug use?',
+        'Do you ever feel bad or guilty about your drug use?',
+        'Does your spouse or partner (or parents) ever complain about your involvement with drugs?',
+        'Have you neglected your family because of your use of drugs?',
+        'Have you engaged in illegal activities in order to obtain drugs?',
+        'Have you ever experienced withdrawal symptoms (felt sick) when you stopped taking drugs?',
+        'Have you had medical problems as a result of your drug use (e.g., memory loss, hepatitis, convulsions, bleeding)?'
+    ],
+    interp:[
+        ['0','No Problems','green','No drug-related problems reported; document and continue standard care'],
+        ['1\u20132','Low Level','green','Monitor; brief intervention may be appropriate; document findings'],
+        ['3\u20135','Moderate','amber','Outpatient treatment referral recommended; initiate appropriate withdrawal monitoring if active use confirmed'],
+        ['6\u20138','Substantial','orange','Intensive assessment needed; inpatient or intensive outpatient referral; initiate withdrawal monitoring (COWS/CIWA as indicated)'],
+        ['9\u201310','Severe','red','Intensive intervention required; high risk for complicated withdrawal; immediate provider notification and comprehensive evaluation']
+    ],
+    note:'DAST-10 captures drug-related consequences, not specific substances. If positive, determine which substance(s) to select the correct withdrawal monitoring tool: opioids \u2192 COWS/OOWS, benzodiazepines \u2192 CIWA-B, alcohol \u2192 CIWA-Ar.'
+},
+asam: {
+    id:'asam', abbrev:'ASAM', name:'American Society of Addiction Medicine Criteria',
+    iconClass:'framework', icon:'layer-group',
+    purpose:'A multidimensional framework used to determine the appropriate level of care for patients with substance use disorders. ASAM evaluates 6 dimensions to create a holistic picture of patient needs and match them to the right intensity of treatment.',
+    when:'During initial substance use assessment; when determining placement level; when reassessing treatment progress or considering step-up/step-down.',
+    freq:'At admission; at each treatment transition; when clinical status changes significantly.',
+    type:'dimensions',
+    dimLabel:'The 6 ASAM Dimensions',
+    items:[
+        ['Dimension 1: Acute Intoxication / Withdrawal Potential','Assess current intoxication, risk/severity of withdrawal. This is where COWS, CIWA-Ar, CIWA-B, and OOWS scores are applied to guide placement.'],
+        ['Dimension 2: Biomedical Conditions','Evaluate physical health status, chronic conditions, infectious diseases, pregnancy, or injuries that affect treatment.'],
+        ['Dimension 3: Emotional, Behavioral, or Cognitive Conditions','Screen for co-occurring mental health disorders (depression, PTSD, psychosis, suicidal ideation) using tools like the Columbia Screen.'],
+        ['Dimension 4: Readiness to Change','Assess patient\u2019s motivation, awareness of problems, and willingness to engage in treatment. Stages: pre-contemplation, contemplation, preparation, action, maintenance.'],
+        ['Dimension 5: Relapse, Continued Use, or Continued Problem Potential','Evaluate historical relapse patterns, coping skills, triggers, and current risk of continued use.'],
+        ['Dimension 6: Recovery / Living Environment','Assess social support, housing stability, exposure to substance-using peers, and environmental risks or resources for recovery.']
+    ],
+    levels:[
+        ['0.5','Early Intervention','Prevention and education for at-risk individuals'],
+        ['1','Outpatient','<9 hours/week of services; stable enough for community living'],
+        ['2.1','Intensive Outpatient','9\u201319 hours/week; structured but lives in community'],
+        ['2.5','Partial Hospitalization','20+ hours/week; significant but stable symptoms'],
+        ['3.1','Clinically Managed Low-Intensity Residential','24-hour structure; support for recovery skills'],
+        ['3.5','Clinically Managed High-Intensity Residential','24-hour care; significant functional limitations'],
+        ['3.7','Medically Monitored Intensive Inpatient','24-hour nursing; physician availability; acute needs'],
+        ['4','Medically Managed Intensive Inpatient','24-hour medical/nursing care; severe/unstable conditions; ICU-level']
+    ],
+    note:'In correctional settings, most detox management falls within ASAM Levels 3.7\u20134. Dimension 1 (withdrawal potential) is the most immediately actionable\u2014this is where your COWS, CIWA-Ar, and CIWA-B scores directly inform placement decisions.'
+},
+asi: {
+    id:'asi', abbrev:'ASI', name:'Addiction Severity Index',
+    iconClass:'framework', icon:'chart-bar',
+    purpose:'A comprehensive semi-structured interview that assesses problem severity across 7 functional domains. Produces composite scores (0\u20131) for each domain. Used for treatment planning, outcomes measurement, and research\u2014provides a complete picture of the patient\u2019s addiction-related challenges.',
+    when:'At initial intake for comprehensive substance abuse evaluation; at treatment milestones for progress measurement.',
+    freq:'At admission; at 30/60/90-day intervals for treatment monitoring; at discharge for outcomes evaluation.',
+    type:'dimensions',
+    dimLabel:'The 7 ASI Domains (Composite Scores: 0.00 \u2013 1.00)',
+    items:[
+        ['Medical Status','Recent hospitalizations, chronic conditions, medications, physical symptoms. How many days of medical problems in the past 30 days? How troubled by medical problems?'],
+        ['Employment / Support','Employment history, income sources, financial situation. How many days of employment problems? Skills and education level.'],
+        ['Alcohol Use','Age of first use, years of regular use, days of use in past 30, amount consumed. Prior treatments, withdrawal history, and consequences of use.'],
+        ['Drug Use','Substances used (type, route, frequency), days of use in past 30, polysubstance patterns. History of overdose, prior treatments, and current use patterns.'],
+        ['Legal Status','Current charges, pending cases, probation/parole status, incarceration history. Days of illegal activity in past 30, severity of legal problems.'],
+        ['Family / Social Relationships','Marital status, living arrangements, satisfaction with relationships. Conflict history, domestic violence, social support network strength.'],
+        ['Psychiatric Status','History of mental health treatment, hospitalizations, medications. Days of psychiatric symptoms in past 30, suicidal ideation history, current psychiatric diagnoses.']
+    ],
+    note:'The ASI is typically administered by a trained interviewer (not self-reported). Composite scores near 0 indicate no problem; scores near 1 indicate extreme severity. In correctional settings, the ASI helps identify which domains need the most urgent intervention and informs individualized treatment plans.'
+}
+};
+
+var formCategories = [
+    { label:'Opioid Withdrawal Monitoring', ids:['cows','oows'] },
+    { label:'Alcohol Withdrawal Monitoring', ids:['ciwa_ar'] },
+    { label:'Benzodiazepine Withdrawal Monitoring', ids:['ciwa_b'] },
+    { label:'Screening Tools', ids:['cage','dast10'] },
+    { label:'Placement & Severity Frameworks', ids:['asam','asi'] }
+];
+
+function renderForms() {
+    var html = '';
+    formCategories.forEach(function(cat) {
+        html += '<div class="form-cat-label">' + cat.label + '</div>';
+        cat.ids.forEach(function(id) {
+            var f = formDataMap[id];
+            html += renderOneForm(f);
+        });
+    });
+    document.getElementById('formsContainer').innerHTML = html;
+}
+
+function renderOneForm(f) {
+    var h = '<div class="section-card" id="form-' + f.id + '">';
+    h += '<div class="section-header" onclick="toggleSection(\'form-' + f.id + '\')">';
+    h += '<div class="section-icon ' + f.iconClass + '"><i class="fa-solid fa-' + f.icon + '"></i></div>';
+    h += '<div class="section-meta"><div class="section-title">' + f.abbrev + '</div>';
+    h += '<div class="section-subtitle">' + f.name + '</div></div>';
+    h += '<i class="fa-solid fa-chevron-down section-chevron"></i></div>';
+    h += '<div class="section-body"><div class="section-inner">';
+    h += '<div class="form-purpose">' + f.purpose + '</div>';
+    h += '<div class="form-meta-row">';
+    h += '<div class="form-meta-cell"><b>When to Administer</b>' + f.when + '</div>';
+    h += '<div class="form-meta-cell"><b>Frequency</b>' + f.freq + '</div>';
+    h += '</div>';
+
+    if (f.type === 'scale') {
+        h += '<div class="sub-heading">Assessment Items (Max Score: ' + f.maxScore + ')</div>';
+        h += '<table class="form-tbl"><thead><tr>';
+        f.headers.forEach(function(hd) { h += '<th>' + hd + '</th>'; });
+        h += '</tr></thead><tbody>';
+        f.items.forEach(function(item) {
+            h += '<tr><td><strong>' + item[0] + '</strong></td>';
+            if (item.length === 3) {
+                h += '<td>' + item[1] + '</td><td>';
+                item[2].split(' \xB7 ').forEach(function(s) {
+                    h += '<span class="sc">' + s.replace(/^(\d+)=/, '<b>$1</b> = ') + '</span> ';
+                });
+                h += '</td>';
+            } else {
+                h += '<td>';
+                item[1].split(' \xB7 ').forEach(function(s) {
+                    h += '<span class="sc">' + s.replace(/^(\d+)=/, '<b>$1</b> = ') + '</span> ';
+                });
+                h += '</td>';
+            }
+            h += '</tr>';
+        });
+        h += '</tbody></table>';
+        h += renderInterp(f);
+    } else if (f.type === 'binary') {
+        h += '<div class="sub-heading">Observable Signs (Present = 1, Absent = 0; Max: ' + f.maxScore + ')</div>';
+        h += '<table class="form-tbl"><thead><tr>';
+        f.headers.forEach(function(hd) { h += '<th>' + hd + '</th>'; });
+        h += '</tr></thead><tbody>';
+        f.items.forEach(function(item) {
+            h += '<tr><td><strong>' + item[0] + '</strong></td><td>' + item[1] + '</td></tr>';
+        });
+        h += '</tbody></table>';
+        h += renderInterp(f);
+    } else if (f.type === 'questions') {
+        h += '<div class="sub-heading">' + (f.qLabel || 'Questions') + '</div>';
+        h += '<div class="ql">';
+        f.items.forEach(function(item) {
+            h += '<div class="ql-item"><div class="ql-n"></div><div>' + item + '</div></div>';
+        });
+        h += '</div>';
+        h += renderInterp(f);
+    } else if (f.type === 'dimensions') {
+        h += '<div class="sub-heading">' + (f.dimLabel || 'Dimensions') + '</div>';
+        h += '<div class="dim-list">';
+        f.items.forEach(function(item, idx) {
+            h += '<div class="dim-row"><div class="dim-n">' + (idx + 1) + '</div>';
+            h += '<div class="dim-body"><strong>' + item[0] + '</strong><span>' + item[1] + '</span></div></div>';
+        });
+        h += '</div>';
+        if (f.levels) {
+            h += '<div class="sub-heading">ASAM Levels of Care</div>';
+            h += '<table class="form-tbl"><thead><tr><th>Level</th><th>Name</th><th>Description</th></tr></thead><tbody>';
+            f.levels.forEach(function(lv) {
+                h += '<tr><td><strong>' + lv[0] + '</strong></td><td><strong>' + lv[1] + '</strong></td><td>' + lv[2] + '</td></tr>';
+            });
+            h += '</tbody></table>';
+        }
+    }
+
+    if (f.note) {
+        h += '<div class="callout warning" style="margin-top:14px"><div class="callout-title"><i class="fa-solid fa-exclamation-circle"></i> Clinical Note</div>';
+        h += '<ul><li>' + f.note + '</li></ul></div>';
+    }
+    h += '</div></div></div>';
+    return h;
+}
+
+function renderInterp(f) {
+    var h = '<div class="sub-heading">Score Interpretation</div><div class="interp-bands">';
+    f.interp.forEach(function(band) {
+        h += '<div class="ib ib-' + band[2] + '"><div class="ib-range">' + band[0] + '</div>';
+        h += '<div class="ib-level">' + band[1] + '</div>';
+        h += '<div class="ib-action">' + band[3] + '</div></div>';
+    });
+    h += '</div>';
+    return h;
+}
+
+renderForms();
+
+updateProgress();
+</script>
+
+
+
+</body></html>
