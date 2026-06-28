@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COWS Detoxification Study Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#2563eb' } } }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .card { @apply bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300; }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-4 md:p-8">
+  <div class="max-w-3xl mx-auto space-y-6">
+    
+    <!-- Header -->
+    <div class="bg-blue-600 text-white p-8 rounded-2xl shadow-xl">
+      <h1 class="text-3xl font-bold">COWS Study Guide</h1>
+      <p class="text-blue-100 mt-2">Clinical Opiate Withdrawal Scale Assessment</p>
+    </div>
+
+    <!-- Core Definition -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Overview</h2>
+      <p>The Clinical Opiate Withdrawal Scale (COWS) is an 11-item clinical tool used by healthcare providers to measure the severity of opioid withdrawal and track a patient's progress during detoxification. The assessment scores both subjective symptoms and objective physical signs.</p>
+    </div>
+
+    <!-- The 11 Assessed Symptoms -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">The 11 Assessed Symptoms</h2>
+      <p class="mb-4 text-sm text-slate-600 dark:text-slate-400">For each item, the assessor rates the severity on a scale, based strictly on symptoms related to opiate withdrawal rather than other conditions:</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li><strong>Resting Pulse Rate:</strong> Counted in beats per minute after the patient sits or rests for one minute.</li>
+          <li><strong>Sweating:</strong> Observed over the past 30 minutes (not related to room temperature).</li>
+          <li><strong>Restlessness:</strong> Observed as the patient attempts to sit still.</li>
+          <li><strong>Pupil Size:</strong> Evaluated in normal room light.</li>
+          <li><strong>Bone or Joint Aches:</strong> Specifically attributed to opiate withdrawal.</li>
+          <li><strong>Runny Nose or Tearing Eyes:</strong> Not caused by a cold or allergies.</li>
+        </ul>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li><strong>GI Upset:</strong> Stomach cramps, nausea, vomiting, or diarrhea over the last 30 minutes.</li>
+          <li><strong>Tremor:</strong> Shaking of hands or muscles, as observed by the assessor.</li>
+          <li><strong>Yawning:</strong> Frequency of yawning observed during the assessment.</li>
+          <li><strong>Anxiety or Irritability:</strong> The patient's emotional state during the assessment.</li>
+          <li><strong>Gooseflesh Skin:</strong> Piloerection observed or felt on the arms.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scoring Interpretation -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Scoring Interpretation</h2>
+      <p class="mb-4">The points from all 11 categories are tallied to determine the severity:</p>
+      <div class="space-y-2">
+        <div class="flex justify-between border-b pb-2 border-slate-200 dark:border-slate-700"><span>Mild</span><span class="font-bold">5 to 12 points</span></div>
+        <div class="flex justify-between border-b pb-2 border-slate-200 dark:border-slate-700"><span>Moderate</span><span class="font-bold">13 to 24 points</span></div>
+        <div class="flex justify-between border-b pb-2 border-slate-200 dark:border-slate-700"><span>Moderately Severe</span><span class="font-bold">25 to 36 points</span></div>
+        <div class="flex justify-between border-b pb-2 border-slate-200 dark:border-slate-700"><span>Severe</span><span class="font-bold">More than 36 points</span></div>
+      </div>
+    </div>
+
+    <!-- Clinical Use -->
+    <div class="card border-l-4 border-l-blue-600">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Clinical Use</h2>
+      <p>The COWS tool is frequently used to determine if a patient is in an optimal window of withdrawal to safely begin medication treatments like buprenorphine (such as Suboxone) to prevent precipitated withdrawal.</p>
+      <p class="mt-4 italic text-sm text-slate-600 dark:text-slate-400">To view or print the exact scoring sheet, you can reference the National Institute on Drug Abuse (NIDA) Clinical Opiate Withdrawal Scale or the ASAM COWS Induction Flow Sheet.</p>
+    </div>
+  </div>
+</body>
+</html>

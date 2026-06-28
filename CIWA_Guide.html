@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIWA Guide</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#2563eb' } } }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .card { @apply bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300; }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-4 md:p-8">
+  
+  <div class="max-w-3xl mx-auto space-y-6">
+    
+    <!-- Header -->
+    <div class="bg-blue-600 text-white p-8 rounded-2xl shadow-xl">
+      <h1 class="text-3xl font-bold">CIWA Guide</h1>
+      <p class="text-blue-100 mt-2">Clinical Institute Withdrawal Assessment</p>
+    </div>
+
+    <!-- Core Definition -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Overview</h2>
+      <p>The core difference in the Clinical Institute Withdrawal Assessment (CIWA) tools lies in the substance being monitored: <strong>CIWA-Ar</strong> measures alcohol withdrawal, while <strong>CIWA-B</strong> evaluates benzodiazepine withdrawal. Both are clinical scoring tools used by medical professionals to track symptom severity and guide medication dosing, but they differ significantly in their format and focus.</p>
+    </div>
+
+    <!-- Key Differences Table -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">Key Differences at a Glance</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100 dark:bg-slate-700">
+              <th class="p-3 border-b-2 border-slate-200 dark:border-slate-600 font-semibold text-slate-700 dark:text-slate-300">Feature</th>
+              <th class="p-3 border-b-2 border-slate-200 dark:border-slate-600 font-semibold text-slate-700 dark:text-slate-300">CIWA-Ar (Alcohol)</th>
+              <th class="p-3 border-b-2 border-slate-200 dark:border-slate-600 font-semibold text-slate-700 dark:text-slate-300">CIWA-B (Benzodiazepines)</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-slate-200 dark:border-slate-700">
+              <td class="p-3 font-medium">Primary Use</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">Tracks alcohol withdrawal severity.</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">Tracks benzodiazepine withdrawal severity.</td>
+            </tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700">
+              <td class="p-3 font-medium">Number of Items</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">10 core symptoms.</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">Up to 22 specific items.</td>
+            </tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700">
+              <td class="p-3 font-medium">Scoring Range</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">0 to 67.</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">0 to 80 (or up to 140 depending on version).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Symptom Focus</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">Sweating, tremors, nausea, tactile/visual/auditory disturbances, and orientation.</td>
+              <td class="p-3 text-slate-600 dark:text-slate-400">Anxiety, paresthesia (tingling), sensory disturbances (like sensitivity to light/sound), depersonalization, and paranoia.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Clinical Practice -->
+    <div class="card">
+      <h2 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">How They Differ in Clinical Practice</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">CIWA-Ar (Revised)</h3>
+          <p class="text-slate-700 dark:text-slate-300">This is the gold standard for managing alcohol withdrawal in the hospital. Scores help healthcare providers determine if and how much medication (often benzodiazepines) to give.</p>
+        </div>
+        <div class="border-t border-slate-200 dark:border-slate-700 pt-4">
+          <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">CIWA-B</h3>
+          <p class="text-slate-700 dark:text-slate-300">This is a much longer, specialized tool validated specifically to distinguish benzo withdrawal symptoms (like severe anxiety, sensory overload, and paranoia) from a patient's baseline symptoms. It requires more comprehensive patient input to distinguish psychological and neurological effects.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources / Notes -->
+    <div class="card border-l-4 border-l-blue-600">
+      <h2 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Clinical Resource</h2>
+      <p>You can view the full tool and calculate scores using the MDCalc CIWA-Ar Calculator online for quick bedside reference.</p>
+    </div>
+
+  </div>
+</body>
+</html>
