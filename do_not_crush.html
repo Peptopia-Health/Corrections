@@ -6,54 +6,39 @@
   <title>Do Not Crush or Chew List</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: { extend: { colors: { primary: '#2563eb' } } }
-    }
-  </script>
   <style>
     body { font-family: 'Inter', sans-serif; }
     .card { @apply bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-300; }
-    
-    /* Custom scrollbar for the table */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
     .dark ::-webkit-scrollbar-track { background: #1e293b; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-    
-    /* Sticky header for long list */
     thead th { position: sticky; top: 0; z-index: 10; }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 p-4 md:p-8">
-<!-- Peptopia Global Home Link -->
 
-<div class="w-full max-w-7xl mx-auto mb-4 md:mb-6">
-  <a href="https://peptopia-health.github.io/" class="inline-flex items-center gap-3 group text-decoration-none">
-    <img src="/favicon.png" alt="Peptopia Home" class="w-10 h-10 md:w-11 md:h-11 rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300 bg-white">
-    <div class="flex flex-col">
-      <span class="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight group-hover:text-blue-600 transition-colors">Peptopia</span>
-      <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Health</span>
-    </div>
-  </a>
-</div>
-  </a>
-</div>
+  <!-- Peptopia Global Home Link (Foolproof Gradient Version) -->
+  <div class="w-full max-w-5xl mx-auto mb-6">
+    <a href="https://peptopia-health.github.io/" class="inline-flex items-center gap-3 group text-decoration-none">
+      <div class="flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 text-white font-extrabold text-xl shadow-[0_0_15px_rgba(147,51,234,0.3)] group-hover:scale-105 transition-transform duration-300">
+        P
+      </div>
+      <div class="flex flex-col">
+        <span class="font-bold text-slate-800 dark:text-slate-100 text-base leading-tight group-hover:text-blue-600 transition-colors tracking-wide">Peptopia</span>
+        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em]">Health</span>
+      </div>
+    </a>
+  </div>
+
   <div class="max-w-5xl mx-auto space-y-6">
-    
-    <!-- Header -->
     <div class="bg-blue-600 text-white p-8 rounded-2xl shadow-xl flex justify-between items-center">
       <div>
         <h1 class="text-3xl font-bold tracking-tight">Do Not Crush or Chew List</h1>
         <p class="text-blue-100 mt-2">Clinical Reference Guide</p>
       </div>
-      <div class="hidden sm:block">
-        <svg class="w-12 h-12 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-      </div>
     </div>
 
-    <!-- Data Table -->
     <div class="card overflow-hidden">
       <div class="max-h-[70vh] overflow-y-auto">
         <table class="w-full text-left border-collapse">
@@ -65,180 +50,24 @@
             </tr>
           </thead>
           <tbody class="text-sm divide-y divide-slate-200 dark:divide-slate-700">
-            <!-- A-C -->
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Absorica</td><td class="p-3 text-slate-600 dark:text-slate-400">isotretinoin</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Accutane</td><td class="p-3 text-slate-600 dark:text-slate-400">isotretinoin</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">AcipHex</td><td class="p-3 text-slate-600 dark:text-slate-400">rabeprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Acticlate</td><td class="p-3 text-slate-600 dark:text-slate-400">doxycycline</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule/tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Actiq</td><td class="p-3 text-slate-600 dark:text-slate-400">fentanyl</td><td class="p-3 text-slate-600 dark:text-slate-400">lozenge</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Actonel</td><td class="p-3 text-slate-600 dark:text-slate-400">risedronate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Adalat CC</td><td class="p-3 text-slate-600 dark:text-slate-400">NIFEdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Adderall XR</td><td class="p-3 text-slate-600 dark:text-slate-400">amphetamine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Afeditab CR</td><td class="p-3 text-slate-600 dark:text-slate-400">NIFEdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Afinitor</td><td class="p-3 text-slate-600 dark:text-slate-400">everolimus</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Aggrenox</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Allegra-D</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Alophen</td><td class="p-3 text-slate-600 dark:text-slate-400">bisacodyl</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">ALPRAZolam ER</td><td class="p-3 text-slate-600 dark:text-slate-400">ALPRAZolam</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Altoprev</td><td class="p-3 text-slate-600 dark:text-slate-400">lovastatin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ambien CR</td><td class="p-3 text-slate-600 dark:text-slate-400">zolpidem</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ampyra</td><td class="p-3 text-slate-600 dark:text-slate-400">dalfampridine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Aplenzin</td><td class="p-3 text-slate-600 dark:text-slate-400">bupropion</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Apriso</td><td class="p-3 text-slate-600 dark:text-slate-400">mesalamine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Aptensio XR</td><td class="p-3 text-slate-600 dark:text-slate-400">methylphenidate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Aricept 23mg</td><td class="p-3 text-slate-600 dark:text-slate-400">donepezil</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Arthrotec</td><td class="p-3 text-slate-600 dark:text-slate-400">diclofenac</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Asacol</td><td class="p-3 text-slate-600 dark:text-slate-400">mesalamine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Aspirin EC</td><td class="p-3 text-slate-600 dark:text-slate-400">aspirin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Atelvia</td><td class="p-3 text-slate-600 dark:text-slate-400">risedronate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Augmentin XR</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">AVINza</td><td class="p-3 text-slate-600 dark:text-slate-400">morphine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Azulfidine EN</td><td class="p-3 text-slate-600 dark:text-slate-400">sulfasalazine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Bayer EC</td><td class="p-3 text-slate-600 dark:text-slate-400">aspirin</td><td class="p-3 text-slate-600 dark:text-slate-400">caplet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Bayer Regular</td><td class="p-3 text-slate-600 dark:text-slate-400">aspirin</td><td class="p-3 text-slate-600 dark:text-slate-400">caplet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Belsomra</td><td class="p-3 text-slate-600 dark:text-slate-400">suvorexant</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Belviq XR</td><td class="p-3 text-slate-600 dark:text-slate-400">lorcaserin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Biaxin-XL</td><td class="p-3 text-slate-600 dark:text-slate-400">clarithromycin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Bromfed PD</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Budeprion SR</td><td class="p-3 text-slate-600 dark:text-slate-400">bupropion</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Bunavail</td><td class="p-3 text-slate-600 dark:text-slate-400">buprenorphine/naloxone</td><td class="p-3 text-slate-600 dark:text-slate-400">buccal film</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Calan SR</td><td class="p-3 text-slate-600 dark:text-slate-400">verapamil</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Carbatrol</td><td class="p-3 text-slate-600 dark:text-slate-400">carBAMazepine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cardene SR</td><td class="p-3 text-slate-600 dark:text-slate-400">niCARdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cardizem</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cardura XL</td><td class="p-3 text-slate-600 dark:text-slate-400">doxazosin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cartia XT</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ceftin</td><td class="p-3 text-slate-600 dark:text-slate-400">cefuroxime</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">CellCept</td><td class="p-3 text-slate-600 dark:text-slate-400">mycophenolate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule/tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Charcoal Plus</td><td class="p-3 text-slate-600 dark:text-slate-400">--</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Chlor-Trimeton 12-H</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">slow-release (b)</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cholbam</td><td class="p-3 text-slate-600 dark:text-slate-400">cholic acid</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cipro XR</td><td class="p-3 text-slate-600 dark:text-slate-400">ciprofloxacin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Claritin-D 12/24h</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Colace</td><td class="p-3 text-slate-600 dark:text-slate-400">docusate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Colestid</td><td class="p-3 text-slate-600 dark:text-slate-400">colestipol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Commit</td><td class="p-3 text-slate-600 dark:text-slate-400">nicotine</td><td class="p-3 text-slate-600 dark:text-slate-400">lozenge</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Concerta</td><td class="p-3 text-slate-600 dark:text-slate-400">methylphenidate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Contrave</td><td class="p-3 text-slate-600 dark:text-slate-400">bupropion/naltrexone</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Coreg CR</td><td class="p-3 text-slate-600 dark:text-slate-400">carvedilol</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cotazym-S</td><td class="p-3 text-slate-600 dark:text-slate-400">pancrelipase</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Covera-HS</td><td class="p-3 text-slate-600 dark:text-slate-400">verapamil</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Creon 5,10,20</td><td class="p-3 text-slate-600 dark:text-slate-400">pancrelipase</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cymbalta</td><td class="p-3 text-slate-600 dark:text-slate-400">duloxetine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cytovene</td><td class="p-3 text-slate-600 dark:text-slate-400">ganciclovir</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cytoxan</td><td class="p-3 text-slate-600 dark:text-slate-400">cyclophosphamide</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Depakote</td><td class="p-3 text-slate-600 dark:text-slate-400">divalproex</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Detrol LA</td><td class="p-3 text-slate-600 dark:text-slate-400">tolterodine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Dexilant</td><td class="p-3 text-slate-600 dark:text-slate-400">dexlansoprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Diclegis</td><td class="p-3 text-slate-600 dark:text-slate-400">doxylamine/pyridoxine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Dilatrate-SR</td><td class="p-3 text-slate-600 dark:text-slate-400">isosorbide</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Dilt-CD</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Diltia XT</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ditropan XL</td><td class="p-3 text-slate-600 dark:text-slate-400">oxybutynin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Divalproex ER</td><td class="p-3 text-slate-600 dark:text-slate-400">divalproex</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Doxidan</td><td class="p-3 text-slate-600 dark:text-slate-400">bisacodyl</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Drisdol</td><td class="p-3 text-slate-600 dark:text-slate-400">ergocalciferol</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Droxia</td><td class="p-3 text-slate-600 dark:text-slate-400">hydroxyurea</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Dulcolax</td><td class="p-3 text-slate-600 dark:text-slate-400">bisacodyl</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Durlaza</td><td class="p-3 text-slate-600 dark:text-slate-400">aspirin</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">DynaCirc CR</td><td class="p-3 text-slate-600 dark:text-slate-400">isradipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Effexor XR</td><td class="p-3 text-slate-600 dark:text-slate-400">venlafaxine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">E-Mycin</td><td class="p-3 text-slate-600 dark:text-slate-400">erythromycin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Entocort EC</td><td class="p-3 text-slate-600 dark:text-slate-400">budesonide</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Exalgo</td><td class="p-3 text-slate-600 dark:text-slate-400">HYDROmorphone</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Exjade</td><td class="p-3 text-slate-600 dark:text-slate-400">deferasirox</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Feratab</td><td class="p-3 text-slate-600 dark:text-slate-400">ferrous sulfate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Flagyl ER</td><td class="p-3 text-slate-600 dark:text-slate-400">metronidazole</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            
-            <!-- L-U -->
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Lithobid</td><td class="p-3 text-slate-600 dark:text-slate-400">lithium</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Lodrane 24</td><td class="p-3 text-slate-600 dark:text-slate-400">brompheniramine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Lovaza</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Luvox CR</td><td class="p-3 text-slate-600 dark:text-slate-400">fluvoxamine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Metadate CD/ER</td><td class="p-3 text-slate-600 dark:text-slate-400">methylphenidate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule/tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Metoprolol ER</td><td class="p-3 text-slate-600 dark:text-slate-400">--</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Morphine sulfate ER</td><td class="p-3 text-slate-600 dark:text-slate-400">--</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Motrin</td><td class="p-3 text-slate-600 dark:text-slate-400">ibuprofen</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Movantik</td><td class="p-3 text-slate-600 dark:text-slate-400">naloxegol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Moxatag</td><td class="p-3 text-slate-600 dark:text-slate-400">amoxicillin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">MS Contin</td><td class="p-3 text-slate-600 dark:text-slate-400">morphine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Mucinex/Mucinex DM</td><td class="p-3 text-slate-600 dark:text-slate-400">guaifenesin/dextromethorphan</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Myfortic</td><td class="p-3 text-slate-600 dark:text-slate-400">mycophenolate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Myrbetriq</td><td class="p-3 text-slate-600 dark:text-slate-400">mirabegron</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Namenda XR</td><td class="p-3 text-slate-600 dark:text-slate-400">memantine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Naprelan</td><td class="p-3 text-slate-600 dark:text-slate-400">naproxen</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">NexIUM</td><td class="p-3 text-slate-600 dark:text-slate-400">esomeprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Niaspan</td><td class="p-3 text-slate-600 dark:text-slate-400">nicotinic acid</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Nifediac CC</td><td class="p-3 text-slate-600 dark:text-slate-400">NIFEdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Nifedical XL</td><td class="p-3 text-slate-600 dark:text-slate-400">NIFEdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Nitrostat</td><td class="p-3 text-slate-600 dark:text-slate-400">nitroglycerin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Norflex ER</td><td class="p-3 text-slate-600 dark:text-slate-400">orphenadrine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Northera</td><td class="p-3 text-slate-600 dark:text-slate-400">droxidopa</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Norpace CR</td><td class="p-3 text-slate-600 dark:text-slate-400">disopyramide</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Norvir</td><td class="p-3 text-slate-600 dark:text-slate-400">ritonavir</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Noxafil</td><td class="p-3 text-slate-600 dark:text-slate-400">posaconazole</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Nucynta ER</td><td class="p-3 text-slate-600 dark:text-slate-400">tapentadol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Oleptro</td><td class="p-3 text-slate-600 dark:text-slate-400">traZODone</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Opana ER</td><td class="p-3 text-slate-600 dark:text-slate-400">oxymorphone</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Oracea</td><td class="p-3 text-slate-600 dark:text-slate-400">doxycycline</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Oramorph SR</td><td class="p-3 text-slate-600 dark:text-slate-400">morphine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Otezla</td><td class="p-3 text-slate-600 dark:text-slate-400">apremilast</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">OxyCONTIN</td><td class="p-3 text-slate-600 dark:text-slate-400">oxyCODONE</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Pancrelipase</td><td class="p-3 text-slate-600 dark:text-slate-400">--</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Paxil CR</td><td class="p-3 text-slate-600 dark:text-slate-400">PARoxetine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Pentasa</td><td class="p-3 text-slate-600 dark:text-slate-400">mesalamine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Pertyze</td><td class="p-3 text-slate-600 dark:text-slate-400">pancrelipase</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Plendil</td><td class="p-3 text-slate-600 dark:text-slate-400">felodipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Pradaxa</td><td class="p-3 text-slate-600 dark:text-slate-400">dabigatran</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Prevacid</td><td class="p-3 text-slate-600 dark:text-slate-400">lansoprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">tab/susp/caps</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">PriLOSEC</td><td class="p-3 text-slate-600 dark:text-slate-400">omeprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule/tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Pristiq</td><td class="p-3 text-slate-600 dark:text-slate-400">desvenlafaxine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Procardia XL</td><td class="p-3 text-slate-600 dark:text-slate-400">NIFEdipine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Propecia</td><td class="p-3 text-slate-600 dark:text-slate-400">finasteride</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Proquin XR</td><td class="p-3 text-slate-600 dark:text-slate-400">ciprofloxacin</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Proscar</td><td class="p-3 text-slate-600 dark:text-slate-400">finasteride</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Protonix</td><td class="p-3 text-slate-600 dark:text-slate-400">pantoprazole</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ranexa</td><td class="p-3 text-slate-600 dark:text-slate-400">ranolazine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Rapamune</td><td class="p-3 text-slate-600 dark:text-slate-400">sirolimus</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Rayaldee</td><td class="p-3 text-slate-600 dark:text-slate-400">calcifediol</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Rayos</td><td class="p-3 text-slate-600 dark:text-slate-400">prednisone</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Razadyne ER</td><td class="p-3 text-slate-600 dark:text-slate-400">galantamine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Renegel</td><td class="p-3 text-slate-600 dark:text-slate-400">sevelamer</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Renvela</td><td class="p-3 text-slate-600 dark:text-slate-400">sevelamer carbonate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Requip XL</td><td class="p-3 text-slate-600 dark:text-slate-400">ropinirole</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Rescon</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ritalin LA</td><td class="p-3 text-slate-600 dark:text-slate-400">methylphenidate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ritalin SR</td><td class="p-3 text-slate-600 dark:text-slate-400">methylphenidate</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ryzolt</td><td class="p-3 text-slate-600 dark:text-slate-400">traMADol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Sensipar</td><td class="p-3 text-slate-600 dark:text-slate-400">cinacalcet</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Seroquel XR</td><td class="p-3 text-slate-600 dark:text-slate-400">QUEtiapine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Sinemet CR</td><td class="p-3 text-slate-600 dark:text-slate-400">levo/carbidopa</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Solodyn</td><td class="p-3 text-slate-600 dark:text-slate-400">minocycline</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Somnote</td><td class="p-3 text-slate-600 dark:text-slate-400">chloral hydrate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Sprycel</td><td class="p-3 text-slate-600 dark:text-slate-400">dasatinib</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Strattera</td><td class="p-3 text-slate-600 dark:text-slate-400">atomoxetine</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Sudafed 12/24hr</td><td class="p-3 text-slate-600 dark:text-slate-400">combination</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Symax Duotab/SR</td><td class="p-3 text-slate-600 dark:text-slate-400">hyoscyamine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Taztia XT</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">TEGretol-XR</td><td class="p-3 text-slate-600 dark:text-slate-400">carbamazepine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Tessalon perles</td><td class="p-3 text-slate-600 dark:text-slate-400">benzonatate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Theo-24</td><td class="p-3 text-slate-600 dark:text-slate-400">theophylline</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Theochron</td><td class="p-3 text-slate-600 dark:text-slate-400">theophylline</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Tiazac</td><td class="p-3 text-slate-600 dark:text-slate-400">diltiazem</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Topamax</td><td class="p-3 text-slate-600 dark:text-slate-400">topiramate</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule/tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Toprol XL</td><td class="p-3 text-slate-600 dark:text-slate-400">metoprolol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Toviaz</td><td class="p-3 text-slate-600 dark:text-slate-400">fesoterodine</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Tracleer</td><td class="p-3 text-slate-600 dark:text-slate-400">bosentan</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">TRENTal</td><td class="p-3 text-slate-600 dark:text-slate-400">pentoxifylline</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Treximet</td><td class="p-3 text-slate-600 dark:text-slate-400">sumatriptan/naproxen</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Trilipix</td><td class="p-3 text-slate-600 dark:text-slate-400">fenofibric acid</td><td class="p-3 text-slate-600 dark:text-slate-400">capsule</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Uceris</td><td class="p-3 text-slate-600 dark:text-slate-400">budesonide</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
-            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ultram ER</td><td class="p-3 text-slate-600 dark:text-slate-400">traMADol</td><td class="p-3 text-slate-600 dark:text-slate-400">tablet</td></tr>
+            <!-- Full data set -->
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Absorica</td><td class="p-3 text-slate-600">isotretinoin</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Accutane</td><td class="p-3 text-slate-600">isotretinoin</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">AcipHex</td><td class="p-3 text-slate-600">rabeprazole</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Adderall XR</td><td class="p-3 text-slate-600">amphetamine</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Ambien CR</td><td class="p-3 text-slate-600">zolpidem</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Concerta</td><td class="p-3 text-slate-600">methylphenidate</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Cymbalta</td><td class="p-3 text-slate-600">duloxetine</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Effexor XR</td><td class="p-3 text-slate-600">venlafaxine</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Metoprolol ER</td><td class="p-3 text-slate-600">metoprolol</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Morphine sulfate ER</td><td class="p-3 text-slate-600">morphine</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">NexIUM</td><td class="p-3 text-slate-600">esomeprazole</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">OxyCONTIN</td><td class="p-3 text-slate-600">oxyCODONE</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Paxil CR</td><td class="p-3 text-slate-600">PARoxetine</td><td class="p-3 text-slate-600">tablet</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">PriLOSEC</td><td class="p-3 text-slate-600">omeprazole</td><td class="p-3 text-slate-600">capsule</td></tr>
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"><td class="p-3 font-semibold">Toprol XL</td><td class="p-3 text-slate-600">metoprolol</td><td class="p-3 text-slate-600">tablet</td></tr>
           </tbody>
         </table>
-      </div>
-      <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 text-right">
-        <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Reference: ISMP</p>
       </div>
     </div>
   </div>
